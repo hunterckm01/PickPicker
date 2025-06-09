@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
+@import "tailwindcss";
+
+@font-face{
+  font-family: Tw-Cen-MT-Condensed;
+  src: url("./utils/Tw-Cen-MT-Condensed.ttf");
+}
+
+@theme{
+  --font-sunflower: "Sunflower", sans-serif ;
+  --font-montserrat: "Montserrat", sans-serif ;
+  --font-tw: "Tw-Cen-MT-Condensed", sans-serif ;
+  --font-syne: "Syne", sans-serif ;
+
+
+
+  /* Color */
+  --color-lightBlack: rgba(0,0,0,0.5);
+}
