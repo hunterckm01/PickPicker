@@ -1,15 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import IconButton from '../../../common/IconButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllFolders } from '../../../../services/operations/photographerAPI';
 import { useNavigate } from 'react-router';
 import { setGallery } from '../../../../slices/gallerySlice';
+import GalleryModal from './GalleryModal';
 
 const MyGallery = () => {
   const {token} = useSelector((state)=>state.auth)
   const {folders} = useSelector((state)=>state.gallery)
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const [galleryModal, setGalleryModal] = useState(false)
 
   useEffect(()=>{
     function fetchFolders(){
@@ -42,7 +44,7 @@ const MyGallery = () => {
         {/* Add Folder Button */}
         <IconButton
           text={"Add Folder"}
-          // onclick={() => setCustomerModal(true)}
+          onclick={() => setGalleryModal(true)}
         />
       </div>
 
@@ -57,6 +59,12 @@ const MyGallery = () => {
           </li>
         ))}
       </ul>
+
+      {
+        galleryModal && (
+          <GalleryModal setGalleryModal = {setGalleryModal}/>
+        )
+      }
     </section>
   );
 }
