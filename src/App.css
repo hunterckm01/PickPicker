@@ -37,3 +37,18 @@ html, body{
 input[type=number] {
     -moz-appearance: textfield;
 }
+
+.glass {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.depth {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15), 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: perspective(800px) rotateX(1deg); 
+}
+
+button{
+    cursor: pointer ;
+}
