@@ -5,6 +5,7 @@ import { NavbarLinks, photographerNavLinks } from '../../data/navbar-links'
 import { useNavigate } from 'react-router'
 import toast from 'react-hot-toast'
 import { setToken } from '../../slices/authSlice'
+import {Link as ScrollLink} from 'react-scroll'
 
 
 const Navbar = () => {
@@ -24,7 +25,7 @@ const Navbar = () => {
     <nav className="w-screen bg-[#1C1A26] h-[131px] flex  items-center justify-center">
       <div className="h-[97px] box-border w-[1200px] bg-[linear-gradient(102.85deg,_#EFDAFF_2.13%,_#FFF4DF_104.3%)] rounded-[25px] flex items-center justify-between mx-auto  px-[80px] py-1 ">
         {!token ? (
-          <div className="flex flex-col font-sunflower text-[#4A1872] ">
+          <div className="flex flex-col font-sunflower text-[#4A1872] cursor-pointer" onClick={()=>navigate("/")}>
             <div className="flex justify-center items-center gap-2">
               <img src={logoPurple} className="h-[31px] w-[31px]" />
               <p className="text-[33px] font-bold">Pic</p>
@@ -41,10 +42,17 @@ const Navbar = () => {
               {NavbarLinks.map((link, index) => (
                 <li
                   key={index}
-                  className="p-[15px] rounded-[30px] font-tw text-[30px]"
-                  onClick = {()=>navigate(link.path)}
+                  className="p-[15px] rounded-[30px] font-tw text-[30px] cursor-pointer"
                 >
-                  {link.title}
+                  <ScrollLink
+                    to={link.id}
+                    spy={true}
+                    smooth={true}
+                    offset={-120}
+                    duration={500}
+                  >
+                    {link.title}
+                  </ScrollLink>
                 </li>
               ))}
             </ul>
@@ -54,7 +62,7 @@ const Navbar = () => {
                 <li
                   key={index}
                   className="py-[6px] px-[12px] rounded-[30px] font-tw text-[30px] cursor-pointer"
-                  onClick = {()=>navigate(link.path)}
+                  onClick={() => navigate(link.path)}
                 >
                   {link.title}
                 </li>

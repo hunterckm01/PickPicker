@@ -193,6 +193,7 @@ export async function addImagesToGallery(req, res){
     }
 
     const {galleryId} = req.body ;
+    console.log("Gallery id is", galleryId)
     if(!galleryId){
       console.log("Could not find Gallery Id")
       return sendResponse(res, 400, false, "Cannot get Gallery Id")
@@ -203,8 +204,10 @@ export async function addImagesToGallery(req, res){
       return sendErrorResponse(res, 404, "Cannot Find the Gallery")
     }
 
+    console.log("Reached here")
     const galleryImages = req.files.imageGallery ;
-    console.log("Gallery Images are", galleryImages)
+    // console.log("Cant able to reach here")
+    console.log("Gallery Images length are", galleryImages.length)
 
     if(!galleryImages){
       console.log("Could not get any images")

@@ -52,7 +52,7 @@ const MyGallery = () => {
       <ul className="w-full px-[150px] font-syne mt-10 grid grid-cols-4 gap-x-30 gap-y-20 pb-10 ">
         {folders?.map((gallery) => (
           <li key = {gallery._id} onClick = {()=>selectGallery(gallery, gallery._id)} className="w-[200px] h-[135px] bg-[linear-gradient(297deg,rgba(255,0,102,0.8)_0.12%,rgba(255,51,132,0.8)_99.88%)] text-2xl text-lightBlack text-center flex justify-center items-center rounded-2xl relative cursor-pointer">
-            <p className='px-2'>
+            <p className='px-2 text-xl'>
               {gallery.galleryName}
             </p>
             <span className='absolute top-[80%] right-[10%] text-[14px]'>{gallery.galleryImagesUrl.length} Images</span>
@@ -62,7 +62,9 @@ const MyGallery = () => {
 
       {
         galleryModal && (
-          <GalleryModal setGalleryModal = {setGalleryModal}/>
+          <GalleryModal setGalleryModal = {setGalleryModal}
+          token = {token}
+          />
         )
       }
     </section>
