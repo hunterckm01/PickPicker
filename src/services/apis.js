@@ -11,6 +11,7 @@ export const authEndPoints = {
 
 //GALLERY ENDPOINTS
 export const galleryEndPoints = {
+  GET_GALLERY_DETAILS_API: BACKEND_URL + "/gallery/getGalleryDetails",
   CREATE_GALLERY_API: BACKEND_URL + "/gallery/createGallery",
   UPDATE_GALLERY_API: BACKEND_URL + "/gallery/updateGallery",
   DELETE_GALLERY_API: BACKEND_URL + "/gallery/deleteGallery",

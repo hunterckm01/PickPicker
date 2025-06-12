@@ -8,6 +8,33 @@ import crypto from 'crypto'
 import streamImagesToZip  from "../utils/zipUtils.js";
 
 
+//GET GALLERY DETAILS
+export async function getGalleryDetails(req, res){
+  try{
+    const photographerId = req.user.id;
+    if (!photographerId) {
+      console.log("Could Not Get Photographer Id");
+      return sendResponse(res, 403, false, "Could Not Get PhotographerId");
+    }
+
+    const {galleryId} = req.query ;
+    console.log("GalleryId at backend is", galleryId)
+    const gallery = await Gallery.findById(galleryId).populate("clientID").exec()
+
+    if(!gallery){
+      throw new Error("Could not find gallery with the id")
+    }
+
+    return sendSuccessResponse(res, 200, "Got all details of gallery", {data: gallery})
+
+  }
+  catch(err){
+    console.log("GETTING ALL GALLERY DETAILS ERROR")
+
+    return sendErrorResponse(res, 500, "Internal Server Error", {error: err.message})
+  }
+}
+
 // CREATE GALLERY
 export async function createGallery(req, res) {
   try {
@@ -51,7 +78,6 @@ export async function createGallery(req, res) {
     });
   }
 }
-
 
 // UPDATE GALLERY
 export async function updateGallery(req, res) {

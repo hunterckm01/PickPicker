@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form';
-import { addClientToGallery, getAllClient } from '../../../../services/operations/photographerAPI';
-import { useSelector } from 'react-redux';
+import { addClientToGallery, getAllClient, getGalleryDetails } from '../../../../services/operations/photographerAPI';
+import { useDispatch, useSelector } from 'react-redux';
 import { IoCloseSharp } from 'react-icons/io5';
 import { IoMdAdd } from 'react-icons/io';
+import { setGallery } from '../../../../slices/gallerySlice';
 
 const SelectCustomerModal = ({setSelectCustomerModal, galleryId}) => {
     const {register, setValue, getValues, handleSubmit, formState: {errors}} = useForm();
     const {clients} = useSelector(state =>state.clients)
     const {token} = useSelector((state)=>state.auth)
+    const dispatch = useDispatch()
 
     const selectClient = async(data) => {
         const formData = new FormData()
@@ -19,6 +21,9 @@ const SelectCustomerModal = ({setSelectCustomerModal, galleryId}) => {
 
         await addClientToGallery(formData, token)
         setSelectCustomerModal(false)
+        const gallery = await getGalleryDetails(galleryId, token)
+        console.log("Gallery Data is", gallery)
+        dispatch(setGallery(gallery))
     }
 
   return (
