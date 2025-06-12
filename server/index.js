@@ -29,7 +29,7 @@ picApp.get('/', (req, res)=>{
     // console.log("cookies are", req.cookies)
     return res.json({
         success: true,
-        message: "Pick PIcker Backend Started"
+        message: "Pick Picker Backend Started"
     })
 })
 
