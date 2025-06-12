@@ -20,6 +20,12 @@ const gallerySchema = new mongoose.Schema({
         required: true, 
         ref: "User"
     },
+    shareCode: {
+        type: String
+    },
+    shareCodeExpiresAt: {
+        type: Date
+    }
 
 })
 

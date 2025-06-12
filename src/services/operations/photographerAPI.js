@@ -299,4 +299,53 @@ export function getAllClient(token){
   }
 }
 
+// Client Images Forward and get them api
+export async function shareCode(galleryId){
+  try{
+    const response = await apiConnector("POST", `http://localhost:4000/api/v1/gallery/${galleryId}/share`,
+    null)
+
+    console.log("Share link response is", response?.data)
+    return response?.data
+  }
+  catch(err){
+    console.error(
+      "Error sharing the gallery:",
+      err?.response?.data || err.message
+    );
+    return {
+      success: false,
+      message:
+        err?.response?.data?.message ||
+        "Error occurred while sharing the gallery",
+    };
+  }
+}
+
+export async function previewGallery(galleryId, shareCode){
+  try{
+    console.log("Gallery id and share code is", galleryId, shareCode)
+    const response = await apiConnector(
+      "GET",
+      `http://localhost:4000/api/v1/gallery/${galleryId}/images?code=${shareCode}`,
+      null
+    );
+
+    console.log("Gallery Preview Response", response?.data)
+    return response?.data
+  }
+  catch(err){
+    console.error(
+      "Error fetching gallery preview:",
+      err?.response?.data || err.message
+    );
+    return {
+      success: false,
+      message:
+        err?.response?.data?.message ||
+        "Error occurred while previewing the gallery",
+    };
+  }
+}
+
 
