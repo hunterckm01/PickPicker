@@ -1,7 +1,7 @@
 import express from 'express'
 const router = express.Router()
 
-import { createGallery, updateGallery, deleteGallery, addClientsToGallery, addImagesToGallery, fetchImagesFromGallery, getAllFolders, shareCode, getClientImages } from '../controllers/Gallery.js'
+import { createGallery, updateGallery, deleteGallery, addClientsToGallery, addImagesToGallery, fetchImagesFromGallery, getAllFolders, shareCode, getClientImages, downloadGalleryImages } from '../controllers/Gallery.js'
 import { auth, isPhotographer } from '../middlewares/auth.js'
 
 router.post("/createGallery", auth, isPhotographer, createGallery);
@@ -22,6 +22,8 @@ router.get("/getAllFolders", auth, isPhotographer, getAllFolders)
 router.post("/:id/share", shareCode)
 
 router.get("/:id/images", getClientImages)
+
+router.get("/:id/download", downloadGalleryImages)
 
 const galleryRoutes = router ;
 export default galleryRoutes ;
