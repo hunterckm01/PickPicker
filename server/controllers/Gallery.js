@@ -5,6 +5,7 @@ import "dotenv/config";
 import { uploadImageToCloudinary, deleteFileFromCloudinary } from "../utils/imageUploader.js";
 import 'dotenv/config'
 import crypto from 'crypto'
+import streamImagesToZip  from "../utils/zipUtils.js";
 
 
 // CREATE GALLERY
@@ -369,6 +370,29 @@ export async function getClientImages(req, res){
     })
   }
   catch(err){
+    console.log("Internal Server Error", err.message);
+    return sendErrorResponse(res, 500, "Internal Server Error", {
+      error: err.message,
+    });
+  }
+}
 
+export async function downloadGalleryImages(req, res){
+  try{
+    const galleryId = req.params.id ;
+    console.log("Gallery id is", galleryId)
+    const gallery = await Gallery.findById(galleryId);
+    if (!gallery || !gallery.galleryImagesUrl?.length) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Gallery or images not found" });
+    }
+    const imageUrls = gallery?.galleryImagesUrl ;
+    console.log("Image Urls are", imageUrls)
+    await streamImagesToZip(imageUrls, res);
+  }
+  catch(err){
+    console.error("Download error:", err);
+    res.status(500).json({ success: false, message: "Failed to download gallery images" });
   }
 }
