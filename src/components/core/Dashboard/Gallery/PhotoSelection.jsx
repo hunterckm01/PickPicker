@@ -1,14 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import IconButton from '../../../common/IconButton'
 import { useSelector } from 'react-redux'
 import SelectCustomerModal from './SelectCustomerModal'
-import { addImagesToGallery } from '../../../../services/operations/photographerAPI'
+import { addImagesToGallery, deleteGallery } from '../../../../services/operations/photographerAPI'
 
 const PhotoSelection = () => {
     const {galleryId} = useParams()
     const {token} = useSelector((state)=>state.auth)
     const {gallery} = useSelector((state)=>state.gallery)
+    const navigate = useNavigate()
 
     const [selectCustomerModal, setSelectCustomerModal] = useState(false)
 
@@ -34,8 +35,14 @@ const PhotoSelection = () => {
       await addImagesToGallery(formData, token)
     }
 
+    const deleteFolder = async() => {
+      // console.log("Gallery id is", galleryId)
+      await deleteGallery(galleryId, token)
+      navigate("/dashboard/photo-selection")
+    }
+
     useEffect(()=>{
-        console.log("Gallery data is", gallery)
+        console.log("Gallery data is", gallery?.galleryImagesUrl.length)
     },[])
 
   return (
@@ -51,7 +58,7 @@ const PhotoSelection = () => {
           </p>
         </div>
 
-        {/* Add Folder Button */}
+        {/* Add Customer to the folders */}
         <div className="flex gap-6">
           {gallery?.clientID ? (
             <p className="border-1 rounded-[20px] self-center py-[6px] px-[14px] font-syne text-[28px] text-[rgba(0,0,0,0.8)] font-semibold cursor-pointer">
@@ -65,7 +72,7 @@ const PhotoSelection = () => {
           )}
 
           {
-            !gallery?.galleryImagesUrl ? (<div className='flex items-center'>
+            !gallery?.galleryImagesUrl.length>0 ? (<div className='flex items-center'>
               <button className="border-1 rounded-[20px] self-center py-[6px] px-[14px] font-syne text-[28px] text-[rgba(0,0,0,0.8)] cursor-pointer"
               onClick={handleButtonClick}
               >
@@ -82,13 +89,14 @@ const PhotoSelection = () => {
             </div>) : (<></>)
           }
           
+          <IconButton text = {"Delete Gallery"} onclick={deleteFolder}/>
         </div>
       </div>
 
       {/* Add Folder List */}
-      <ul className="w-full px-[150px] font-syne mt-10 grid grid-cols-6 gap-x-12 gap-y-16 pb-10 ">
+      <ul className="w-full px-[150px] font-syne mt-10 grid grid-cols-5 gap-x-12 gap-y-16 pb-10 ">
         {gallery?.galleryImagesUrl?.map((image, index) => (
-          <img src = {image} className = "h-[300px] w-[280px]" key = {index}/>
+          <img src = {image} className = "h-[300px] w-[400px]" key = {index}/>
         ))}
       </ul>
 
