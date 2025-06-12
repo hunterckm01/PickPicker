@@ -3,6 +3,8 @@ import { clientEndPoints, galleryEndPoints } from "../apis";
 import { apiConnector } from "../apiConnector";
 import { setFolders, setGallery } from "../../slices/gallerySlice";
 import { setLoading, setClients } from "../../slices/clientSlice";
+import axios from "axios";
+import fileDownload from "js-file-download";
 
 const {
   CREATE_CLIENT_API,
@@ -346,6 +348,27 @@ export async function previewGallery(galleryId, shareCode){
         "Error occurred while previewing the gallery",
     };
   }
+}
+
+export async function downloadGallery(galleryId){
+  const toastId = toast.loading("Downloading...")
+  try{
+    console.log("Galery id in frontend is ", galleryId)
+    const response = await axios.get(
+      `http://localhost:4000/api/v1/gallery/${galleryId}/download`,
+      {
+        responseType: "blob"
+      }
+    );
+
+    fileDownload(response.data, "favImages.zip")
+    toast.success("Downloaded Successfully")
+  }
+  catch(err){
+    console.log("Failed to download Images", err)
+    toast.dismiss("Could Not Download")
+  }
+  toast.dismiss(toastId)
 }
 
 
