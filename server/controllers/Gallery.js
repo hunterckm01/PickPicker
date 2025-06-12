@@ -97,12 +97,15 @@ export async function deleteGallery(req, res) {
       console.log("Could Not Get Photographer Id");
       return sendResponse(res, 403, false, "Could Not Get PhotographerId");
     }
-
-    const { galleryId } = req.body;
+    
+    // console.log(req.body)
+    const {galleryId}  = req.body;
+    console.log("Gallery id is", galleryId)
     if(!galleryId) {
       console.log("Could Not Get Any Gallery Id");
       return sendResponse(res, 400, false, "Could Not Get Gallery All Fields", { error: err.message});
     }
+
 
     // Delete the Gallery
     const galleryImages = await Gallery.findOne({_id: galleryId}).select("galleryImagesUrl");

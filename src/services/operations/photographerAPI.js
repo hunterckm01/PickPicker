@@ -74,10 +74,10 @@ export async function updateGallery(data, token){
     return result ;
 }
 
-export async function deleteGallery(data, token){
+export async function deleteGallery(galleryId, token){
     const toastId = toast.loading("On Way To Delete...")
     try{
-        const response = await apiConnector('DELETE', DELETE_GALLERY_API, data, {Authorization: `Bearer ${token}`})
+        const response = await apiConnector('POST', DELETE_GALLERY_API, {galleryId}, {Authorization: `Bearer ${token}`})
 
         if(!response.data?.success){
             throw new Error(response.data?.message)

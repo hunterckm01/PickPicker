@@ -16,10 +16,14 @@ const MyGallery = () => {
   useEffect(()=>{
     function fetchFolders(){
       dispatch(getAllFolders(token))
-      console.log("Folders got are", folders)
+      // console.log("Folders got are", folders)
     }
     fetchFolders()
   },[])
+
+  useEffect(()=>{
+    console.log("Folders are", folders)
+  },[folders])
 
   const selectGallery = (gallery, galleryId) => {
     // console.log("gallery data is", JSON.stringify(gallery))
@@ -37,7 +41,7 @@ const MyGallery = () => {
             Folder Selection
           </p>
           <p className="font-tw font-normal tracking-[3px] text-[30px] text-[#A19999] mt-[-10px]">
-            2 Folders
+            {folders.length} Folders
           </p>
         </div>
 

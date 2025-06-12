@@ -8,7 +8,7 @@ router.post("/createGallery", auth, isPhotographer, createGallery);
 
 router.put("/updateGallery", auth, isPhotographer, updateGallery);
 
-router.delete("/deleteGallery", auth, isPhotographer, deleteGallery);
+router.post("/deleteGallery", auth, isPhotographer, deleteGallery);
 
 router.post("/addClientToGallery", auth, isPhotographer, addClientsToGallery)
 
