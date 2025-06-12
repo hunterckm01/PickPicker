@@ -1,16 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import IconButton from '../../../common/IconButton'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import SelectCustomerModal from './SelectCustomerModal'
-import { addImagesToGallery, deleteGallery, shareCode } from '../../../../services/operations/photographerAPI'
+import { addImagesToGallery, deleteGallery, getGalleryDetails, shareCode } from '../../../../services/operations/photographerAPI'
 import toast from 'react-hot-toast'
+import { setGallery } from '../../../../slices/gallerySlice'
 
 const PhotoSelection = () => {
     const {galleryId} = useParams()
     const {token} = useSelector((state)=>state.auth)
     const {gallery} = useSelector((state)=>state.gallery)
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const [selectCustomerModal, setSelectCustomerModal] = useState(false)
 
@@ -41,6 +43,8 @@ const PhotoSelection = () => {
       }
       console.log("Before sending data to server", formData)
       await addImagesToGallery(formData, token)
+      const gallery = await getGalleryDetails(galleryId, token)
+      dispatch(setGallery(gallery))
     }
 
     const deleteFolder = async() => {
@@ -50,7 +54,7 @@ const PhotoSelection = () => {
     }
 
     useEffect(()=>{
-        console.log("Gallery data is", gallery?.galleryImagesUrl.length)
+        console.log("Gallery data is", gallery)
     },[])
 
   return (
@@ -62,7 +66,7 @@ const PhotoSelection = () => {
             Image Selection
           </p>
           <p className="font-tw font-normal tracking-[3px] text-[30px] text-[#A19999] mt-[-10px]">
-            {gallery?.galleryImagesUrl.length ? gallery?.galleryImagesUrl.length : "0"} Images
+            {gallery?.galleryImagesUrl.length ? gallery.galleryImagesUrl.length : "0"} Images
           </p>
         </div>
 

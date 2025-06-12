@@ -15,6 +15,7 @@ const {
 } = clientEndPoints;
 
 const {
+  GET_GALLERY_DETAILS_API,
   CREATE_GALLERY_API,
   UPDATE_GALLERY_API,
   DELETE_GALLERY_API, 
@@ -24,6 +25,34 @@ const {
   GET_ALL_FOLDER_API,
 } = galleryEndPoints;
 
+
+//GET GALLERY DETAILS ENDPOINTS
+export async function getGalleryDetails(galleryId, token){
+  let gallery = null ;
+  const toastId = toast.loading("Fetching")
+  try{
+    console.log("Gallery id ", galleryId)
+    const response = await apiConnector("GET", GET_GALLERY_DETAILS_API,
+    null,
+    {
+      Authorization: `Bearer ${token}`
+    },
+    {galleryId}
+    )
+
+    if (!response.data.success) {
+      throw new Error(response.data.message);
+    }
+    toast.success("Fetched")
+    gallery = response?.data?.data ;
+  }
+  catch(err){
+    console.log("GET GALLERY API......", err.response);
+    toast.error(err.response.data.message);
+  }
+  toast.dismiss(toastId)
+  return gallery ;
+}
 
 //ALL GALLERY END PONINTS
 export async function createGallery(data, token) {
