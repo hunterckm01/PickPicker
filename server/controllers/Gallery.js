@@ -4,6 +4,7 @@ import {sendErrorResponse, sendResponse, sendSuccessResponse} from "../utils/sen
 import "dotenv/config";
 import { uploadImageToCloudinary, deleteFileFromCloudinary } from "../utils/imageUploader.js";
 import 'dotenv/config'
+import crypto from 'crypto'
 
 
 // CREATE GALLERY
@@ -306,5 +307,68 @@ export async function getAllFolders(req, res){
   catch(err){
     console.log("Error got while getting all folders", err.message)
     return sendErrorResponse(res, 500, "Internal Server Error", {error: err.message})
+  }
+}
+
+// SHAREBALE CODE OF GALLERY
+export async function shareCode(req, res){
+  try{
+    // const { galleryId } = req.body ;
+    const galleryId = req.params.id ;
+
+    const gallery = await Gallery.findById(galleryId)
+
+    if(!gallery){
+      return sendErrorResponse(res, 404, "Could not find the gallery", {error: err.message})
+    }
+
+    const shareCode = crypto.randomInt(100000, 999999).toString()
+
+    const expiresAt = Date.now() + 3*24*60*60*1000 //Expires after 3 days
+
+    gallery.shareCode = shareCode ;
+    gallery.shareCodeExpiresAt = expiresAt ;
+    await gallery.save()
+
+    res.json({
+      link: `http://localhost:5173/preview/${gallery._id}?code=${shareCode}`,
+    });
+
+  }
+  catch(err){
+    console.log("Internal Server Error", err.message);
+    return sendErrorResponse(res, 500, "Internal Server Error", {
+      error: err.message,
+    });
+  }
+}
+
+export async function getClientImages(req, res){
+  try{
+    console.log("yes the work is done")
+    console.log("In the get client images")
+    const {id} = req.params ;
+    const {code} = req.query ;
+
+    const gallery = await Gallery.findById(id)
+    if(!gallery){
+      return sendErrorResponse(res, 404, "Could not found the gallery")
+    }
+
+    console.log("Gallery data is", gallery)
+
+    if(gallery.shareCode !== code ||
+      !gallery.shareCodeExpiresAt ||
+      gallery.shareCodeExpiresAt < Date.now()
+    ){
+      return sendErrorResponse(res, 401, "Invalid or expired Code")
+    }
+
+    res.json({
+      images: gallery.galleryImagesUrl
+    })
+  }
+  catch(err){
+
   }
 }

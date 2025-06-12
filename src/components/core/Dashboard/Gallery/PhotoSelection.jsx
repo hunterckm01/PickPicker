@@ -3,7 +3,8 @@ import { useNavigate, useParams } from 'react-router'
 import IconButton from '../../../common/IconButton'
 import { useSelector } from 'react-redux'
 import SelectCustomerModal from './SelectCustomerModal'
-import { addImagesToGallery, deleteGallery } from '../../../../services/operations/photographerAPI'
+import { addImagesToGallery, deleteGallery, shareCode } from '../../../../services/operations/photographerAPI'
+import toast from 'react-hot-toast'
 
 const PhotoSelection = () => {
     const {galleryId} = useParams()
@@ -13,6 +14,13 @@ const PhotoSelection = () => {
 
     const [selectCustomerModal, setSelectCustomerModal] = useState(false)
 
+    const share = async() => {
+      console.log("Share function is hit")
+      const data = await shareCode(galleryId)
+      console.log("Data is", data)
+      navigator.clipboard.writeText(data.link)
+      toast.success("Link copied Successfully")
+    }
 
     const fileInputRef = useRef(null)
 
@@ -90,6 +98,8 @@ const PhotoSelection = () => {
           }
           
           <IconButton text = {"Delete Gallery"} onclick={deleteFolder}/>
+
+          <IconButton text = {"Share Code"} onclick={share}/>
         </div>
       </div>
 
