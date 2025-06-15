@@ -314,10 +314,10 @@ export function getAllClient(token){
       const clients = response.data?.allClients ;
       // console.log("Clients is", clients.length)
       if(clients.length === 0)
-        toast.success("You don't have any Clients")
+        toast.error("You don't have any Clients, Please add")
       else{
         localStorage.setItem("clients", JSON.stringify(clients))
-        toast.success("Got all your Clients")
+        // toast.success("Got all your Clients")
       }
       dispatch(setClients(clients))
     }

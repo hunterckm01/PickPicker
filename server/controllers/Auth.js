@@ -202,7 +202,7 @@ export async function login(req, res){
 
         if(!user){
             console.log("User is Not Registered with Us")
-            throw new Error("User is not registered with us, please sign in")
+            throw new Error("You are not registered, Please Sign Up")
         }
 
         // console.log("Passwrod got is", password, user.password)
@@ -241,8 +241,7 @@ export async function login(req, res){
         console.log("Login Failed")
         return res.status(500).json({
             success: false,
-            message: "Login Failed, Please Try Again",
-            error: err.message
+            message: err.message
         })
     }
 }

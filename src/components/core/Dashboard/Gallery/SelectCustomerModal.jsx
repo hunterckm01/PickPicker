@@ -58,7 +58,10 @@ const SelectCustomerModal = ({setSelectCustomerModal, galleryId}) => {
             <select
               id="selectClient"
               className="flex flex-col w-[404px] text-2xl pl-1 bg-[rgba(255,255,255,0.1)] border-1 border-[rgba(255,255,255,0.1)] rounded-[10px] py-2 "
-              {...register("client", {required: true})}
+              {...register("client", 
+                {required: true},
+                
+              )}
             >
               <option className="text-xl pb-2" disabled>
                 Select Customers
