@@ -1,7 +1,9 @@
 import React from 'react'
 import { FaArrowRight } from 'react-icons/fa6';
+import { useNavigate } from 'react-router';
 
 const ClientLogin = () => {
+  const navigate = useNavigate()
   return (
     <section
       className="relative bg-[linear-gradient(120deg,_#c8a0ffb3_10%,_#6496ff80_100%)]
