@@ -5,6 +5,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 const Login = () => {
   const navigate = useNavigate();
   const [loginState, setLoginState] = useState("photographer");
+  // const [showPsd, setShowPsd] = useState(false)
 
   return (
     <div

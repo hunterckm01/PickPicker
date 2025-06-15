@@ -107,7 +107,7 @@ const CustomerModal = ({ setCustomerModal, token, editClient }) => {
             </div>
           </div>
 
-          <label id="name">
+          <label id="name" className='flex flex-col'>
             <input
               id="name"
               type="text"
@@ -120,16 +120,23 @@ const CustomerModal = ({ setCustomerModal, token, editClient }) => {
             )}
           </label>
 
-          <label id="phoneNumber">
+          <label id="phoneNumber" className='flex flex-col'>
             <input
               id="phoneNumber"
               placeholder="phone no"
               className="bg-[rgba(255,255,255,0.1)] text-2xl pl-2 border-1 border-[rgba(255,255,255,0.1)] rounded-[10px] mt-[24px] w-[404px] py-2"
               
-              {...register("phoneNumber", { required: true })}
+              {...register("phoneNumber", {
+                 required: true,
+                 pattern: {
+                  value: /^\d{10}$/,
+                  message: "Only 10 Numbers are allowed"
+                } 
+              }
+              )}
             />
             {errors.phoneNumber && (
-              <span className="inputError">Customer Number is Required</span>
+              <span className="inputError">{errors.phoneNumber.message}</span>
             )}
           </label>
         </form>
