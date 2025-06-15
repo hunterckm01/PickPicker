@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllClient } from '../../../services/operations/photographerAPI'
+import { getAllClient } from '../../../../services/operations/photographerAPI'
+import IconButton from '../../../common/IconButton'
+import { useNavigate } from 'react-router'
 
 const MyProfile = () => {
   const {token} = useSelector((state=>state.auth))
   const {clients} = useSelector((state)=>state.clients)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   // const {dispatch} = useSelector((state)=>sta)
   const [photographerDetails, setPhotographerDetails] = useState("") 
@@ -26,7 +29,12 @@ const MyProfile = () => {
   return (
     <div className="w-screen min-h-[calc(100vh-131px)] bg-[linear-gradient(103deg,_#efdaffc0_2.13%,_#b458ff8f_104.3%)] flex flex-col ">
 
-      <div className='pt-[100px] mx-auto text-3xl font-bold'>Photographer Details</div>
+      <div className='pt-[100px] mx-auto text-3xl font-bold flex w-[682px] justify-between'>
+        <h2>
+          Photographer Details
+        </h2>
+        <IconButton text = "Edit" onclick={()=>navigate("/dashboard/settings")}/>
+      </div>
 
       <form className="mt-[50px] flex flex-col gap-5 mx-auto w-[682px] ">
         <div className="w-full inputBox">
