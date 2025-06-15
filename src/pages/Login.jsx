@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router'
-import { FaArrowRight } from "react-icons/fa6";
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
 const Login = () => {
-  const navigate = useNavigate()
-  const [loginState, setLoginState] = useState('photographer')
+  const navigate = useNavigate();
+  const [loginState, setLoginState] = useState("photographer");
 
   return (
     <div
@@ -15,6 +15,9 @@ const Login = () => {
       } flex items-center justify-center`}
     >
       <div className="w-full max-w-[412px] flex items-center justify-center gap-[14px]">
+        <button className="moveButton" onClick={() => navigate(-1)}>
+          <FaArrowLeft className="text-3xl" />
+        </button>
         <div className="bg-white h-[56px] px-5 py-[10px]  flex items-center justify-between rounded-[30px] text-2xl font-syne gap-[10px]">
           <div
             onClick={() => setLoginState("photographer")}
@@ -40,13 +43,13 @@ const Login = () => {
 
         <button
           onClick={() => navigate(loginState)}
-          className="w-[60px] h-[48px] bg-white rounded-full flex items-center justify-center"
+          className="w-[60px] h-[48px] bg-white rounded-full flex items-center justify-center moveButton"
         >
           <FaArrowRight className="text-2xl" />
         </button>
       </div>
     </div>
   );
-}
+};
 
-export default Login
+export default Login;
