@@ -6,7 +6,7 @@ import OpenRoute from './OpenRoute'
 import Login from '../pages/Login'
 import SignUp from '../pages/SignUp'
 import Dashboard from '../pages/Dashboard.jsx'
-import MyProfile from "../components/core/Dashboard/MyProfile.jsx";
+import MyProfile from "../components/core/Dashboard/Profile/MyProfile.jsx";
 import MyClients from "../components/core/Dashboard/Clients/MyClients.jsx";
 import MyGallery from "../components/core/Dashboard/Gallery/MyGallery.jsx";
 import Contact from '../pages/Contact'
@@ -14,6 +14,7 @@ import ClientLogin from '../components/core/Auth/ClientLogin'
 import PhotographerLogin from '../components/core/Auth/PhotographerLogin'
 import PhotoSelection from '../components/core/Dashboard/Gallery/PhotoSelection.jsx'
 import PreviewImages from '../pages/PreviewImages.jsx'
+import Settings from '../components/core/Dashboard/Settings/Settings.jsx'
 
 const AppRoutes = () => {
   return (
@@ -67,6 +68,7 @@ const AppRoutes = () => {
         }
       >
         <Route path="/dashboard/my-profile" element={<MyProfile />} />
+        <Route path = "/dashboard/settings" element = {<Settings/>}/>
         <Route path="/dashboard/customers" element={<MyClients />} />
         <Route path="/dashboard/photo-selection" element={<MyGallery />} />
         <Route path="/dashboard/photo-selection/:galleryId" element={<PhotoSelection />} />

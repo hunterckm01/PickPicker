@@ -3,9 +3,9 @@ html, body{
 }
 
 .inputError{
-    color: #fb2c36 ;
+    color: #372727 ;
     margin-top: 8px;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .moveButton{

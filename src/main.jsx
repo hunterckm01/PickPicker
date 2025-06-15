@@ -17,7 +17,13 @@ createRoot(document.getElementById('root')).render(
   <Provider store = {picPickerStore}>
     <BrowserRouter>
       <App />
-      <Toaster/>
+      <Toaster containerStyle={{
+        top: "30px",
+        left: "-800px",
+       
+        position: "absolute",
+
+      }}/>
     </BrowserRouter>
   </Provider>
   // {/* </StrictMode>, */}

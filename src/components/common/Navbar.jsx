@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import logoPurple from '../../assets/LogoPurple.svg'
 import { NavbarLinks, photographerNavLinks } from '../../data/navbar-links'
-import { useNavigate } from 'react-router'
+import { matchPath, useLocation, useNavigate } from 'react-router'
 import toast from 'react-hot-toast'
 import { setToken } from '../../slices/authSlice'
 import {Link as ScrollLink} from 'react-scroll'
@@ -11,7 +11,16 @@ import {Link as ScrollLink} from 'react-scroll'
 const Navbar = () => {
   const {token} = useSelector(state => state.auth)
   const dispatch = useDispatch()
+  const location = useLocation()
   // console.log("Photographer value", photographer)
+
+  useEffect(()=>{
+    console.log("Pathname is", location.pathname)
+  },[location.pathname])
+
+  const matchRoute = (route) => {
+    return matchPath({path: route}, location.pathname)
+  }
 
   const navigate = useNavigate();
   function logout(){
@@ -25,7 +34,10 @@ const Navbar = () => {
     <nav className="w-screen bg-[#1C1A26] h-[131px] flex  items-center justify-center">
       <div className="h-[97px] box-border w-[1200px] bg-[linear-gradient(102.85deg,_#EFDAFF_2.13%,_#FFF4DF_104.3%)] rounded-[25px] flex items-center justify-between mx-auto  px-[80px] py-1 ">
         {!token ? (
-          <div className="flex flex-col font-sunflower text-[#4A1872] cursor-pointer" onClick={()=>navigate("/")}>
+          <div
+            className="flex flex-col font-sunflower text-[#4A1872] cursor-pointer"
+            onClick={() => navigate("/")}
+          >
             <div className="flex justify-center items-center gap-2">
               <img src={logoPurple} className="h-[31px] w-[31px]" />
               <p className="text-[33px] font-bold">Pic</p>
@@ -57,11 +69,15 @@ const Navbar = () => {
               ))}
             </ul>
           ) : (
-            <ul className="flex items-center rounded-[18px] gap-[21px] px-[30px] bg-[#DCC4F1]">
+            <ul className="flex items-center rounded-[18px] gap-[21px] px-[30px] py-2 bg-[#DCC4F1]">
               {photographerNavLinks.map((link, index) => (
                 <li
                   key={index}
-                  className="py-[6px] px-[12px] rounded-[30px] font-tw text-[30px] cursor-pointer"
+                  className={`py-[2px] px-[12px] rounded-[30px] font-tw text-[30px] cursor-pointer ${
+                    matchRoute(link.path)
+                      ? "bg-[linear-gradient(270deg,_#bd14f980_0%,_#ed34c880_100%)] transition-all duration-300"
+                      : ""
+                  }`}
                   onClick={() => navigate(link.path)}
                 >
                   {link.title}

@@ -8,59 +8,56 @@ import toast from "react-hot-toast";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 
 const SignUp = () => {
-
-  const {register, handleSubmit, setValue, getValues, formState: {errors}} = useForm()
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    getValues,
+    formState: { errors },
+  } = useForm();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   // const [loading, setLoading] = useState(false)
-  const loading = false ;
+  const loading = false;
 
-  const [email, setEmail] = useState('');
-  const [showPsd, setShowPsd] = useState(false)
+  const [email, setEmail] = useState("");
+  const [showPsd, setShowPsd] = useState(false);
   const [showConPsd, setShowConPsd] = useState(false);
 
-  function emailHandler(e){
-    setEmail(e.target.value)
+  function emailHandler(e) {
+    setEmail(e.target.value);
     // console.log("email now is", email)
   }
 
   const validateEmail = () => {
-    const emailRegex = /^[\w.-]+@[a-zA-z\d.-]+\.[a-zA-Z]{2,}$/ ;
-    if(emailRegex.test(email))
-      return true;
-    else
-      return false ;
+    const emailRegex = /^[\w.-]+@[a-zA-z\d.-]+\.[a-zA-Z]{2,}$/;
+    if (emailRegex.test(email)) return true;
+    else return false;
+  };
+
+  function sendOtpEvent() {
+    if (validateEmail()) dispatch(sendOtp(email));
+    else toast.error("Invalid Email Type");
   }
 
-  function sendOtpEvent(){
-    if(validateEmail())
-      dispatch(sendOtp(email))
-    else
-      toast.error("Invalid Email Type")
-  }
+  const onSubmit = async (data) => {
+    console.log("On submit handler is called", data);
+    const formData = new FormData();
 
-
-
-  const onSubmit = async(data) => {
-
-    console.log("On submit handler is called", data)
-    const formData = new FormData()
-    
-    formData.append("studioName", data.studio)
-    formData.append("firstName", data.firstName)
+    formData.append("studioName", data.studio);
+    formData.append("firstName", data.firstName);
     formData.append("lastName", data.lastName);
     formData.append("email", data.email);
     formData.append("password", data.password);
     formData.append("confirmPsd", data.confirmPsd);
-    formData.append("otp", data.Otp)
-    console.log("SignUp Form Data after appending", data)
-    
+    formData.append("otp", data.Otp);
+    console.log("SignUp Form Data after appending", data);
+
     // setLoading(true)
-    dispatch(signUp(formData, navigate))
+    dispatch(signUp(formData, navigate));
     // console.log("Done submission")
     // setLoading(false)
-  } 
-
+  };
 
   return (
     <section className="relative bg-[linear-gradient(120deg,_#c8a0ffb3_10%,_#6496ff80_100%)] pb-6">
@@ -94,7 +91,7 @@ const SignUp = () => {
                   Studio
                 </label>
 
-                <div className="inputAnsBox">
+                <div className="inputAnsBox flex flex-col">
                   <input
                     required
                     type="text"
@@ -110,7 +107,7 @@ const SignUp = () => {
                     })}
                   />
                   {errors.studio && (
-                    <span className="mt-2 text-xs text-red-500">
+                    <span className="left-5 relative top-1 text-xs text-red-500">
                       {errors.studio.message || "Studio Name is Required"}
                     </span>
                   )}
@@ -126,7 +123,7 @@ const SignUp = () => {
                   Email
                 </label>
 
-                <div className="inputAnsBox">
+                <div className="inputAnsBox flex flex-col">
                   <input
                     required
                     type="email"
@@ -136,14 +133,14 @@ const SignUp = () => {
                     {...register("email", {
                       required: true,
                       pattern: {
-                        value: /^[a-zA-Z0,9._-]+@[a-zA-Z0,9.-]+\.[a-zA-Z]{2,}$/,
+                        value: /^[a-zA-Z0-9._-]+@[a-zA-Z0,9.-]+\.[a-zA-Z]{2,}$/,
                         message: "Please enter valid email address",
                       },
                     })}
                     onChange={emailHandler}
                   />
                   {errors.email && (
-                    <span className="mt-2 text-xs text-red-500">
+                    <span className="left-5 relative top-1 text-xs text-red-500">
                       {errors.email.message}
                     </span>
                   )}
@@ -159,7 +156,7 @@ const SignUp = () => {
                   First Name
                 </label>
 
-                <div className="inputAnsBox">
+                <div className="inputAnsBox flex flex-col">
                   <input
                     required
                     type="text"
@@ -172,7 +169,7 @@ const SignUp = () => {
                     })}
                   />
                   {errors.firstName && (
-                    <span className="mt-2 text-xs text-red-500">
+                    <span className="left-5 relative top-1 text-xs text-red-500">
                       First Name is required
                     </span>
                   )}
@@ -188,7 +185,7 @@ const SignUp = () => {
                   Last Name
                 </label>
 
-                <div className="inputAnsBox">
+                <div className="inputAnsBox flex flex-col">
                   <input
                     required
                     type="text"
@@ -201,7 +198,7 @@ const SignUp = () => {
                     })}
                   />
                   {errors.lastName && (
-                    <span className="mt-2 text-xs text-red-500">
+                    <span className="left-5 relative top-1 text-xs text-red-500">
                       Last Name is required
                     </span>
                   )}
@@ -238,39 +235,41 @@ const SignUp = () => {
                   Password
                 </label>
 
-                <div className="inputAnsBox flex items-center">
-                  <input
-                    required
-                    type={showPsd ? "text" : "password"}
-                    id="password"
-                    placeholder="Asdsfsd112"
-                    className="font-syne relative left-5 text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0 "
-                    {...register("password", {
-                      required: true,
-                      minLength: 8,
-                      pattern: {
-                        value: /^[a-zA-Z0-9$._,]{8,}$/,
-                        message: "At least 8 characters needed ",
-                      },
-                    })}
-                  />
+                <div className="inputAnsBox flex flex-col ">
+                  <div className="w-full flex items-center">
+                    <input
+                      required
+                      type={showPsd ? "text" : "password"}
+                      id="password"
+                      placeholder="Asdsfsd112"
+                      className="font-syne relative left-5 text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0 "
+                      {...register("password", {
+                        required: true,
+                        minLength: 8,
+                        pattern: {
+                          value: /^[a-zA-Z0-9$._,]{8,}$/,
+                          message: "At least 8 characters needed ",
+                        },
+                      })}
+                    />
+                    {showPsd ? (
+                      <BsEyeFill
+                        className="relative left-[20px] w-[24px] h-[24px] cursor-pointer"
+                        onClick={() => setShowPsd(!showPsd)}
+                      />
+                    ) : (
+                      <BsEyeSlashFill
+                        className="relative left-[20px] w-[24px] h-[24px] cursor-pointer"
+                        onClick={() => setShowPsd(!showPsd)}
+                      />
+                    )}
+                  </div>
                   {errors.password && (
-                    <span className="mt-2 text-xs text-red-500">
-                      Password is required
+                    <span className="relative left-5 top-1 text-xs text-red-500">
+                      {errors.password.message || "Password should be at least 8 characters"}
                     </span>
                   )}
                   {/* Password Hide Icon */}
-                  {showPsd ? (
-                    <BsEyeFill
-                      className="relative left-[20px] w-[24px] h-[24px] cursor-pointer"
-                      onClick={() => setShowPsd(!showPsd)}
-                    />
-                  ) : (
-                    <BsEyeSlashFill
-                      className="relative left-[20px] w-[24px] h-[24px] cursor-pointer"
-                      onClick={() => setShowPsd(!showPsd)}
-                    />
-                  )}
                 </div>
               </div>
 
@@ -282,37 +281,39 @@ const SignUp = () => {
                 >
                   Confirm Password
                 </label>
-                <div className="inputAnsBox flex">
-                  <input
-                    required
-                    type={showConPsd ? "text" : "password"}
-                    id="confirmPsd"
-                    placeholder="Asdsfsd112"
-                    className="font-syne relative left-5 text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0"
-                    {...register("confirmPsd", {
-                      required: true,
-                      validate: (match) => {
-                        const password = getValues("password");
-                        return match === password || "Passwords should match";
-                      },
-                    })}
-                  />
+                <div className="inputAnsBox flex flex-col">
+                  <div className="w-full flex items-center">
+                    <input
+                      required
+                      type={showConPsd ? "text" : "password"}
+                      id="confirmPsd"
+                      placeholder="Asdsfsd112"
+                      className="font-syne relative left-5 text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0"
+                      {...register("confirmPsd", {
+                        required: true,
+                        validate: (match) => {
+                          const password = getValues("password");
+                          return match === password || "Passwords should match";
+                        },
+                      })}
+                    />
+                    {showConPsd ? (
+                      <BsEyeFill
+                        className="relative left-[20px] w-[24px] h-[24px] cursor-pointer"
+                        onClick={() => setShowConPsd(!showConPsd)}
+                      />
+                    ) : (
+                      <BsEyeSlashFill
+                        className="relative left-[20px] w-[24px] h-[24px] cursor-pointer"
+                        onClick={() => setShowConPsd(!showConPsd)}
+                      />
+                    )}
+                  </div>
                   {errors.confirmPsd && (
-                    <span className="mt-2 text-xs text-red-500">
+                    <span className="relative left-5 top-1 text-xs text-red-500">
                       {errors.confirmPsd.message}
                     </span>
                   )}
-                {showConPsd ? (
-                  <BsEyeFill
-                    className="relative left-[20px] w-[24px] h-[24px] cursor-pointer"
-                    onClick={() => setShowConPsd(!showConPsd)}
-                  />
-                ) : (
-                  <BsEyeSlashFill
-                    className="relative left-[20px] w-[24px] h-[24px] cursor-pointer"
-                    onClick={() => setShowConPsd(!showConPsd)}
-                  />
-                )}
                 </div>
               </div>
 
@@ -324,7 +325,7 @@ const SignUp = () => {
                 >
                   Otp
                 </label>
-                <div className="inputAnsBox">
+                <div className="inputAnsBox flex flex-col">
                   <input
                     required
                     type="Number"
@@ -335,7 +336,7 @@ const SignUp = () => {
                     {...register("Otp", { required: true })}
                   />
                   {errors.otp && (
-                    <span className="mt-2 text-xs text-red-500">
+                    <span className="left-5 relative top-1 text-xs text-red-500">
                       Otp is required
                     </span>
                   )}

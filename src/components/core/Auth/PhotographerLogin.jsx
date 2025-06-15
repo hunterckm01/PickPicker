@@ -1,33 +1,39 @@
-import React from 'react'
-import { useForm } from 'react-hook-form';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa6';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 // import { setLoading } from '../../../slices/authSlice';
-import { login } from '../../../services/operations/authAPI';
-import { setLoading } from '../../../slices/profileSlice';
+import { login } from "../../../services/operations/authAPI";
+import { setLoading } from "../../../slices/profileSlice";
+import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 
 const PhotographerLogin = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [showPsd, setShowPsd] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    getValues,
+    formState: { errors },
+  } = useForm();
+  const [psdType, setPsdType] = useState(false);
 
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const {register, handleSubmit, setValue, getValues, formState: {errors}} = useForm()
+  const onSubmit = async (data) => {
+    console.log("Login Frontend");
+    const formData = new FormData();
 
-  
+    formData.append("email", data.email);
+    formData.append("password", data.password);
 
-  const onSubmit = async(data) => {
-    console.log("Login Frontend")
-    const formData = new FormData()
+    dispatch(setLoading(true));
+    dispatch(login(formData, navigate));
 
-    formData.append("email", data.email)
-    formData.append("password", data.password)
-
-    dispatch(setLoading(true))
-    dispatch(login(formData, navigate))
-    
     // dispatch(setPhotographer(photographerData))
-    dispatch(setLoading(false))
-  }
+    dispatch(setLoading(false));
+  };
 
   return (
     <section
@@ -48,7 +54,7 @@ const PhotographerLogin = () => {
           onSubmit={handleSubmit(onSubmit)}
         >
           {/* Back Button */}
-          <button className="moveButton" onClick={()=>navigate(-1)}>
+          <button className="moveButton" onClick={() => navigate(-1)}>
             <FaArrowLeft className="text-3xl" />
           </button>
 
@@ -88,17 +94,36 @@ const PhotographerLogin = () => {
             >
               Password
             </label>
-            <div className="inputAnsBox">
+            <div className="inputAnsBox flex flex-col">
+              <div className="flex items-center w-full">
               <input
-                type="password"
+                type={showPsd ? "text" : "password"}
                 id="password"
                 placeholder="Asdsfsd112"
                 className="font-syne relative left-5 text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0"
-                {...register("password", {required: true})}
+                {...register("password", {
+                  required: true,
+                  pattern: {
+                    value: /^[a-zA-Z0-9$._,]{8,}$/,
+                    message: "Password is smaller",
+                  },
+                })}
               />
+              {showPsd ? (
+                <BsEyeFill
+                  className="relative left-[20px] w-[24px] h-[24px] cursor-pointer"
+                  onClick={() => setShowPsd(!showPsd)}
+                />
+              ) : (
+                <BsEyeSlashFill
+                  className="relative left-[20px] w-[24px] h-[24px] cursor-pointer"
+                  onClick={() => setShowPsd(!showPsd)}
+                />
+              )}
+              </div>
               {errors.password && (
-                <span className="mt-2 text-xs text-red-500">
-                  Password is Required
+                <span className="relative left-5 top-1 text-xs text-red-500">
+                  {errors.password.message || "Password is required"}
                 </span>
               )}
             </div>
@@ -112,6 +137,6 @@ const PhotographerLogin = () => {
       </div>
     </section>
   );
-}
+};
 
-export default PhotographerLogin
+export default PhotographerLogin;
