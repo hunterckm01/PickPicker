@@ -34,14 +34,6 @@ export async function createClient(req, res) {
     }
 
     console.log("After fetching photographer Details");
-    //Upload Client Image to Cloudinary
-    // const clientImage = await uploadImageToCloudinary(customerImage, process.env.FOLDER_NAME)
-
-    // console.log(clientImage)
-
-    // console.log("Can't get client image")
-    // console.log("Client Image is", clientImage)
-    // console.log("Reached Here")
 
     // Checking if client already exist
     const checkClientExist = await Client.findOne({ clientNumber });
