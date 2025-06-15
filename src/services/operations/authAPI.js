@@ -68,8 +68,8 @@ export function signUp(data, navigate){
         }
         catch(err){
             console.log("Sign Up Failed", err)
-            toast.error("Sign Up Failed")
-            navigate("/signUp")
+            toast.error(err.response.data.message)
+            // navigate("/signUp")
         }
         dispatch(setLoading(false))
         toast.dismiss(toastId)
