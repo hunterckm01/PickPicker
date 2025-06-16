@@ -25,10 +25,6 @@ const handleImageChange = async(e) => {
         previewDisplayPicture(image)
         console.log(image)
     }   
-    // const formData = new FormData()
-    // formData.append("displayPicture", image)
-    // Upload to the server
-    // dispatch(updateProfilePicture(token, formData))
 }
 
 const previewDisplayPicture = (image) => {
@@ -47,29 +43,27 @@ const handleFileUpload = () => {
     dispatch(updateProfilePicture(token, formData))
 }
 
-
-useEffect(()=>{
-    console.log("Photographer info is", photographer)
-},[])
-
   return (
-    <div className='pt-[50px] w-[682px] mx-auto flex flex-col gap-8'>
-      <h2 className='font-bold text-3xl'>Display Picture</h2>
+    <div className="pt-[50px] w-[900px] mx-auto flex flex-col gap-8">
+      <h2 className="font-bold text-3xl">Display Picture</h2>
 
-      <div className='w-full flex items-center gap-10'>
-        <img src = {previewImage || photographer.image} className='h-[80px] w-[80px] rounded-full'/>
-        <input
-            type = "file"
-            ref = {imageInputRef}
-            className='hidden'
-            accept='.jpg, .jpeg, .png'
-            onChange={handleImageChange}
+      <div className="w-full flex items-center gap-10">
+        <img
+          src={previewImage || photographer.image}
+          className="h-[80px] w-[80px] rounded-full"
         />
-        <IconButton text = "Update" onclick={handleClick}/>
-        <IconButton text = "Upload" onclick={handleFileUpload}/>
+        <input
+          type="file"
+          ref={imageInputRef}
+          className="hidden"
+          accept=".jpg, .jpeg, .png"
+          onChange={handleImageChange}
+        />
+        <IconButton text="Update" onclick={handleClick} />
+        <IconButton text="Upload" onclick={handleFileUpload} />
       </div>
     </div>
-  )
+  );
 }
 
 export default UpdateDisplayPicture

@@ -36,6 +36,7 @@ export const clientEndPoints = {
 //PROFILE END POINTS
 export const profileEndPoints = {
   UPDATE_PROFILE_API: BACKEND_URL + "/profile/updateProfile",
+  UPDATE_ADDITIONAL_PROFILE_API: BACKEND_URL + "/profile/updateAdditionalProfile",
   DELETE_ACCOUNT_API: BACKEND_URL + "/profile/deleteAccount",
   GET_PROFILE_API: BACKEND_URL + "/profile/getProfile",
   UPDATE_PROFILE_PICTURE_API: BACKEND_URL + "/profile/updateDisplayPicture",

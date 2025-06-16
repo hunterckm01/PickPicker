@@ -10,7 +10,6 @@ const Settings = () => {
           {/* Update display picture */}
           <UpdateDisplayPicture/>
 
-          
           {/* Update the basic information */}
           <UpdateBasicInformation/>
 
