@@ -16,7 +16,7 @@ export function sendErrorResponse(res, statusCode, message, options = {}){
     })
 }
 
-export function sendSuccessResponse(res, statusCode,message, options = {}){
+export function sendSuccessResponse(res, statusCode, message, options = {}){
     return res.status(statusCode).json({
         success: true,
         message: message,

@@ -8,12 +8,14 @@ const {
   DELETE_ACCOUNT_API,
   GET_PROFILE_API,
   UPDATE_PROFILE_PICTURE_API,
+  UPDATE_ADDITIONAL_PROFILE_API
 } = profileEndPoints;
 
 export function updateProfile(token, formData) {
   return async (dispatch) => {
-    const toastId = toast.loading(true);
+    const toastId = toast.loading("Updating")
     dispatch(setLoading(true));
+    console.log("Form Data is", formData)
     try {
       const response = await apiConnector(
         "POST",
@@ -23,14 +25,14 @@ export function updateProfile(token, formData) {
           Authorization: `Bearer ${token}`,
         }
       );
-
+     
+      
       if (!response.data.success) {
         throw new Error(response.data.message);
       }
-
       const userImage =
         response?.data?.photographer?.image ??
-        `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}`;
+        `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.photographer.firstName} ${response.data.photographer.lastName}`;
 
       dispatch(
         setPhotographer({ ...response.data.photographer, image: userImage })
@@ -43,8 +45,53 @@ export function updateProfile(token, formData) {
 
       toast.success("Profile Updated Successfully");
     } catch (err) {
-      console.log("COULD NOT UPDATE THE PROFILE");
-      toast.error(err.response.data.message);
+        console.log("Could not update successfully")
+      console.log("COULD NOT UPDATE THE PROFILE", err);
+    //   toast.error(err.response.data.message);
+    }
+    dispatch(setLoading(false));
+    toast.dismiss(toastId);
+  };
+}
+
+export function updateAdditionalProfile(token, formData) {
+  return async (dispatch) => {
+    const toastId = toast.loading("Updating");
+    dispatch(setLoading(true));
+    console.log("Form Data is", formData);
+    try {
+      const response = await apiConnector(
+        "POST",
+        UPDATE_ADDITIONAL_PROFILE_API,
+        formData,
+        {
+          Authorization: `Bearer ${token}`,
+        }
+      );
+
+      if (!response.data.success) {
+        throw new Error(response.data.message);
+      }
+
+      console.log("Error is here")
+      const userImage =
+        response?.data?.photographer?.image ??
+        `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.photographer.firstName} ${response.data.photographer.lastName}`;
+    
+      dispatch(
+        setPhotographer({ ...response.data.photographer, image: userImage })
+      );
+
+      localStorage.setItem(
+        "photographer",
+        JSON.stringify(response.data.photographer)
+      );
+
+      toast.success("Profile Updated Successfully");
+    } catch (err) {
+      toast.error("Could not update successfully");
+      console.log("COULD NOT UPDATE THE  ADDITIONAL PROFILE", err);
+      //   toast.error(err.response.data.message);
     }
     dispatch(setLoading(false));
     toast.dismiss(toastId);
