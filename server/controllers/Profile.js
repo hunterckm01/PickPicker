@@ -193,6 +193,7 @@ export const getProfile = async (req, res) => {
 //Update the display Picture
 export const updateDisplayPicture = async(req, res) => {
     try{
+      // console.log("Here i am")
         const photographerId = req.user.id ;
         if (!photographerId) {
           console.log("Photographer id is not present");
@@ -203,6 +204,7 @@ export const updateDisplayPicture = async(req, res) => {
           );
         }
 
+        console.log("file is", req.files.displayPicture)
         const displayPicture = req.files.displayPicture ;
 
         //Const Validation Checks
@@ -223,7 +225,8 @@ export const updateDisplayPicture = async(req, res) => {
             {new: true}
         )
 
-        return sendSuccessResponse(res, 201, "Image Updated Successfully", {data: updatedPhotographer})
+        console.log("Updated successfully")
+        return sendSuccessResponse(res, 201, "Image Updated Successfully", {updatedPhotographer})
 
     }
     catch(err){
