@@ -235,10 +235,9 @@ export async function addImagesToGallery(req, res){
       return sendErrorResponse(res, 404, "Cannot Find the Gallery")
     }
 
-    console.log("Reached here")
-    const galleryImages = req.files.imageGallery ;
-    // console.log("Cant able to reach here")
-    console.log("Gallery Images length are", galleryImages.length)
+    const galleryImages = Array.isArray(req.files.imageGallery) ? req.files.imageGallery : [req.files.imageGallery] ;
+  
+    console.log("Gallery Images length is", galleryImages.length)
 
     if(!galleryImages){
       console.log("Could not get any images")
@@ -246,9 +245,11 @@ export async function addImagesToGallery(req, res){
     }
     
     // UPLOADING MULTIPLE IMAGES AT ONCE
-    for(const image in galleryImages){
+    for(const image of galleryImages){
+      // console.log("Gallery image is ", galleryImages)
+      console.log(image)
       const result = await uploadImageToCloudinary(
-        galleryImages[image],
+        image,
         process.env.FOLDER_NAME
       );
       console.log("Result after uploading images to the cloudinary", result)
@@ -262,20 +263,12 @@ export async function addImagesToGallery(req, res){
       )
     }
 
-    // console.log("Result is", result)
-    // // ADD THE URL TO THE DATABASE
-    // await Gallery.findByIdAndUpdate(
-    //   galleryId,
-    //   {galleryImagesUrl: result},
-    //   {new: true}
-    // )
-
     // SUCCESSFULL COMPLETION OF UPLOADING ALL IMAGES
     return sendResponse(res, 200, true, "Images uploaded Successfully to the database")
 
   }
   catch(err){
-    console.log("Error Occured while uploading images to gallery")
+    console.log("Error Occured while uploading images to gallery", err)
     return sendResponse(res, 400, false, "Cannot Add Images, Internal Server Error", {error: err.message})
   }
 }
