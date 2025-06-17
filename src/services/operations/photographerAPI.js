@@ -131,7 +131,6 @@ export async function addClientToGallery(data, token){
         if(!response.data?.success){
             throw new Error(response.data?.message)
         }
-
         toast.success("Client Added Successfully")
         
     }

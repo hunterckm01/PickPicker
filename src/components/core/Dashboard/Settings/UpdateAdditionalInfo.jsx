@@ -29,12 +29,14 @@ const UpdateAdditionalInfo = () => {
   return (
     <div className="pt-[50px] w-[900px] mx-auto flex flex-col gap-8">
       <div className="flex justify-between">
-        <h2 className="font-bold text-3xl">Additional Information</h2>
+        <h2 className="font-bold text-3xl font-sunflower">
+          Additional Information
+        </h2>
 
         <IconButton text="Update" onclick={handleSubmit(onSubmit)} />
       </div>
 
-      <form className="grid grid-cols-2 gap-4 border">
+      <form className="grid grid-cols-2 gap-4 ">
         {/* About */}
         <div className="w-full inputBox">
           <label
@@ -43,8 +45,8 @@ const UpdateAdditionalInfo = () => {
           >
             About
           </label>
-          <div className="inputAnsBox flex flex-col">
-            <input
+          <div className="inputAnsBoxProfile flex flex-col">
+            <textarea
               name="about"
               placeholder="No Bio"
               defaultValue={photographer.additionalDetails.about}
@@ -52,9 +54,9 @@ const UpdateAdditionalInfo = () => {
               className="font-syne relative left-5 text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0 text-slate-500 bg-transparent"
               {...register("about", {
                 pattern: {
-                    value: /^[a-zA-Z!]{3,100}$/,
-                    message: "Your Bio is either too short"
-                }
+                  value: /^[a-zA-Z!'";: ]{3,50}$/,
+                  message: "Your Bio is either too short",
+                },
               })}
             />
             {errors.about && (
@@ -66,14 +68,14 @@ const UpdateAdditionalInfo = () => {
         </div>
 
         {/* Contact Number */}
-        <div className="w-full inputBox">
+        <div className="w-full inputBox self-start">
           <label
             htmlFor="contactNumber"
             className="font-syne text-[16px] font-medium p-3"
           >
-            Contact Number
+            Phone No.
           </label>
-          <div className="inputAnsBox flex flex-col">
+          <div className="inputAnsBoxProfile  flex flex-col">
             <input
               name="contactNumber"
               placeholder="No Number"
@@ -103,7 +105,7 @@ const UpdateAdditionalInfo = () => {
           >
             Date Of Birth
           </label>
-          <div className="inputAnsBox">
+          <div className="inputAnsBoxProfile">
             <input
               name="dob"
               defaultValue={photographer.additionalDetails.dateOfBirth || "DOB"}
@@ -128,7 +130,7 @@ const UpdateAdditionalInfo = () => {
           >
             Gender
           </label>
-          <div className="inputAnsBox">
+          <div className="inputAnsBoxProfile">
             <select
               name="gender"
               defaultValue={photographer.additionalDetails.gender}

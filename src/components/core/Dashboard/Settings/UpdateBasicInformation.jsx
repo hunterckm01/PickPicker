@@ -25,16 +25,15 @@ const UpdateBasicInformation = () => {
 
   return (
     <div className="pt-[50px] w-[900px] mx-auto flex flex-col gap-8">
-    <div className="flex justify-between">
+      <div className="flex justify-between">
+        <h2 className="font-bold text-3xl font-sunflower">Basic Information</h2>
 
-      <h2 className="font-bold text-3xl">Basic Information</h2>
-
-      <IconButton text = "Update" onclick={handleSubmit(onSubmit)}/>
-    </div>
+        <IconButton text="Update" onclick={handleSubmit(onSubmit)} />
+      </div>
 
       <form
         // onSubmit={handleSubmit(onSubmit)}
-        className="grid grid-cols-2 gap-4 border"
+        className="grid grid-cols-2 gap-4 "
       >
         {/* Email */}
         <div className="w-full inputBox">
@@ -44,7 +43,7 @@ const UpdateBasicInformation = () => {
           >
             Email
           </label>
-          <div className="inputAnsBox">
+          <div className="inputAnsBoxProfile">
             <input
               name="email"
               value={photographer.email}
@@ -63,7 +62,7 @@ const UpdateBasicInformation = () => {
           >
             Account
           </label>
-          <div className="inputAnsBox">
+          <div className="inputAnsBoxProfile">
             <input
               name="accountType"
               value={photographer.accountType}
@@ -82,7 +81,7 @@ const UpdateBasicInformation = () => {
           >
             First Name
           </label>
-          <div className="inputAnsBox">
+          <div className="inputAnsBoxProfile">
             <input
               name="firstName"
               defaultValue={photographer?.firstName}
@@ -107,7 +106,7 @@ const UpdateBasicInformation = () => {
           >
             Last Name
           </label>
-          <div className="inputAnsBox">
+          <div className="inputAnsBoxProfile">
             <input
               name="lastName"
               defaultValue={photographer?.lastName}
@@ -132,7 +131,7 @@ const UpdateBasicInformation = () => {
           >
             Studio Name
           </label>
-          <div className="inputAnsBox">
+          <div className="inputAnsBoxProfile">
             <input
               name="studioName"
               defaultValue={photographer.studioName}

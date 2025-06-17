@@ -15,19 +15,21 @@ const DeleteAccount = () => {
         console.log("Account Deleted Successfully")
     }
   return (
-    <div className="pt-[50px] w-[900px] mx-auto flex flex-col gap-8">
-      <div className="flex flex-col">
-        <h2 className="font-bold text-3xl">Delete Account</h2>
+    <div className="py-[50px] w-[900px] mx-auto flex flex-col gap-8">
+      <div className="flex flex-col gap-4">
+        <h2 className="font-bold text-3xl font-sunflower">Delete Account</h2>
 
-        <div className="mt-10 border flex flex-col items-start">
-          <p className="">Would you really want to delete this account ?</p>
-          <p>
+        <div className="mt-2 flex flex-col items-start">
+          <p className="text-2xl font-tw">
+            Would you really want to delete this account ?
+          </p>
+          <p className="text-red-800 italic">
             This account may contain your client and the uploaded data of you
             and your clients
           </p>
           <IconButton
-            text={"delete"}
-            customCss={""}
+            text={"Delete"}
+            customCss={"mt-[10px]"}
             onclick={deleteAccountHandler}
           />
         </div>

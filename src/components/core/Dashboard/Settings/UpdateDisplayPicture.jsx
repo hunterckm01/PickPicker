@@ -45,7 +45,7 @@ const handleFileUpload = () => {
 
   return (
     <div className="pt-[50px] w-[900px] mx-auto flex flex-col gap-8">
-      <h2 className="font-bold text-3xl">Display Picture</h2>
+      <h2 className="font-bold font-sunflower text-3xl">Display Picture</h2>
 
       <div className="w-full flex items-center gap-10">
         <img
