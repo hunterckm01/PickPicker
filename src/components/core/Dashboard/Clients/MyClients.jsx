@@ -69,10 +69,10 @@ const MyClients = () => {
           >
             <p className="w-[250px]">{client.clientName}</p>
             <p className="w-[150px]">{client.clientNumber}</p>
-            <div className="flex gap-2 items-center w-[100px] cursor-pointer">
+            {/* <div className="flex gap-2 items-center w-[100px] cursor-pointer">
               <IoAddCircle />
               <p>Files</p>
-            </div>
+            </div> */}
             <div className="flex gap-2 items-center w-[125px] cursor-pointer">
               <RxUpdate />
               <p onClick={()=>editClientDetails(client)}>Update</p>
