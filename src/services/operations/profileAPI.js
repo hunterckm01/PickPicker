@@ -2,6 +2,7 @@ import toast from "react-hot-toast";
 import { profileEndPoints } from "../apis";
 import { apiConnector } from "../apiConnector";
 import { setPhotographer, setLoading } from "../../slices/profileSlice";
+import { logout } from "./authAPI";
 
 const {
   UPDATE_PROFILE_API,
@@ -100,7 +101,7 @@ export function updateAdditionalProfile(token, formData) {
 
 export function deleteAccount(token, navigate) {
   return async (dispatch) => {
-    const toastId = toast.loading(true);
+    const toastId = toast.loading("Deleting");
 
     try {
       const response = await apiConnector("DELETE", DELETE_ACCOUNT_API, null, {
@@ -111,11 +112,13 @@ export function deleteAccount(token, navigate) {
         throw new Error(response.data.message);
       }
 
+      console.log("Reached or not")
       toast.success("Account Deleted");
-      dispatch(navigate(logout));
+      dispatch(logout(navigate));
     } catch (err) {
-      console.log("DELETE ACCOUNT API ERROR");
-      toast.error(err.response.data.message);
+      console.log("DELETE ACCOUNT API ERROR", err);
+      
+      // toast.error(err.response.data.message);
     }
     toast.dismiss(toastId);
   };
