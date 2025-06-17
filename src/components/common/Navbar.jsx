@@ -6,12 +6,14 @@ import { matchPath, useLocation, useNavigate } from 'react-router'
 import toast from 'react-hot-toast'
 import { setToken } from '../../slices/authSlice'
 import {Link as ScrollLink} from 'react-scroll'
+import { logout } from '../../services/operations/authAPI'
 
 
 const Navbar = () => {
   const {token} = useSelector(state => state.auth)
   const dispatch = useDispatch()
   const location = useLocation()
+  // const navigate = useNavigate()
   // console.log("Photographer value", photographer)
 
   useEffect(()=>{
@@ -23,11 +25,10 @@ const Navbar = () => {
   }
 
   const navigate = useNavigate();
-  function logout(){
-    localStorage.removeItem("token")
-    dispatch(setToken(null))
-    toast.success("Logout Successfully")
-    navigate("/")
+
+  function logoutHandler(){
+    console.log("Handler function is called")
+    dispatch(logout(navigate))
   }
   
   return (
@@ -112,7 +113,7 @@ const Navbar = () => {
               Profile
             </button>
             <button
-              onClick={logout}
+              onClick={logoutHandler}
               className="p-2 rounded-xl bg-[linear-gradient(270deg,_#bd14f940_0%,_#ed34c840_100%)]"
             >
               Log Out

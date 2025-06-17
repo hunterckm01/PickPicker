@@ -2,6 +2,7 @@ import React from 'react'
 import UpdateDisplayPicture from './UpdateDisplayPicture';
 import UpdateBasicInformation from './UpdateBasicInformation';
 import UpdateAdditionalInfo from './UpdateAdditionalInfo';
+import DeleteAccount from './DeleteAccount';
 
 const Settings = () => {
   return (
@@ -17,6 +18,7 @@ const Settings = () => {
           <UpdateAdditionalInfo/>
 
           {/* Delete Account */}
+          <DeleteAccount/>
         
     </div>
   );

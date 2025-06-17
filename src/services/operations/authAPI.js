@@ -127,3 +127,14 @@ export function changePassword(oldPassword, newPassword){
         dispatch(setLoading(false))
     }
 }
+
+export function logout(navigate){
+    return (dispatch) => {
+        dispatch(setToken(null))
+        dispatch(setPhotographer(null))
+        localStorage.removeItem("token")
+        localStorage.removeItem("photographer")
+        toast.success("Logged Out")
+        navigate("/")
+    }
+}
