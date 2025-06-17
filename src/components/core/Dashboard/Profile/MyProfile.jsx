@@ -33,7 +33,7 @@ const MyProfile = () => {
         <h2>
           Photographer Details
         </h2>
-        <IconButton text = "Edit" onclick={()=>navigate("/dashboard/settings")}/>
+        <IconButton text = "More" onclick={()=>navigate("/dashboard/settings")}/>
       </div>
 
       <form className="mt-[50px] flex flex-col gap-5 mx-auto w-[682px] ">

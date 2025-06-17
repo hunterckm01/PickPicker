@@ -1,15 +1,12 @@
 import {v2 as cloudinary} from 'cloudinary'
 
 export const uploadImageToCloudinary = async(file, folder, height, quality) => {
-    console.log("File is", file)
-    console.log("Folder is", folder)
     const options = {
         folder,
         resource_type : "auto",
         ...(height && {height}),
         ...(quality && {quality})
     }
-    
     return await cloudinary.uploader.upload(file.tempFilePath, options)
 }
 
