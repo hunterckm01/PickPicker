@@ -22,7 +22,8 @@ const SelectCustomerModal = ({setSelectCustomerModal, galleryId}) => {
         await addClientToGallery(formData, token)
         setSelectCustomerModal(false)
         const gallery = await getGalleryDetails(galleryId, token)
-        console.log("Gallery Data is", gallery)
+        // console.log("Gallery Data is", gallery)
+        localStorage.setItem("gallery", JSON.stringify(gallery))
         dispatch(setGallery(gallery))
     }
 

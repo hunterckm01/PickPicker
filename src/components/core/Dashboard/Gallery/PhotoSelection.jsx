@@ -44,6 +44,8 @@ const PhotoSelection = () => {
       console.log("Before sending data to server", formData)
       await addImagesToGallery(formData, token)
       const gallery = await getGalleryDetails(galleryId, token)
+      console.log("After Updating the images", gallery)
+      localStorage.setItem("gallery", JSON.stringify(gallery));
       dispatch(setGallery(gallery))
     }
 
