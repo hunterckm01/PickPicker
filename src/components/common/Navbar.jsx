@@ -32,18 +32,28 @@ const Navbar = () => {
   }
   
   return (
-    <nav className="w-screen bg-[#1C1A26] h-[131px] flex  items-center justify-center">
-      <div className="h-[97px] box-border w-[1200px] bg-[linear-gradient(102.85deg,_#EFDAFF_2.13%,_#FFF4DF_104.3%)] rounded-[25px] flex items-center justify-between mx-auto  px-[80px] py-1 ">
+    <nav className="w-screen sm:bg-[#1C1A26] h-[50px] sm:h-[110px] lg:h-[131px] sm:flex sm:items-center sm:justify-center">
+      <div
+        className="h-full sm:[90px] lg:h-[97px] box-border 
+       w-full lg:w-[1200px] bg-[linear-gradient(102.85deg,_#EFDAFF_2.13%,_#FFF4DF_104.3%)] sm:rounded-[25px] flex items-center justify-between mx-auto pl-[16px] pr-[10px] sm:px-[80px] py-1 "
+      >
         {!token ? (
           <div
             className="flex flex-col font-sunflower text-[#4A1872] cursor-pointer"
             onClick={() => navigate("/")}
           >
-            <div className="flex justify-center items-center gap-2">
-              <img src={logoPurple} className="h-[31px] w-[31px]" />
-              <p className="text-[33px] font-bold">Pic</p>
+            <div className="flex justify-center items-center gap-1 sm:gap-2">
+              <img
+                src={logoPurple}
+                className="h-[11px] sm:h-[25px] lg:h-[33px]"
+              />
+              <p className="text-[11px] sm:text-[25px] lg:text-[33px] font-bold">
+                Pic
+              </p>
             </div>
-            <p className="text-[33px] font-bold">Picker</p>
+            <p className="text-[11px] sm:text-[25px] lg:text-[33px] font-bold">
+              Picker
+            </p>
           </div>
         ) : (
           <img src={logoPurple} className="h-[71px] w-[71px]" />
@@ -51,11 +61,11 @@ const Navbar = () => {
 
         <div>
           {!token ? (
-            <ul className="flex items-center rounded-[18px] gap-[21px] px-[30px] bg-[#DCC4F1]">
+            <ul className="flex items-center rounded-[18px] gap-[4px] sm:gap-[14px] lg:gap-[21px] px-[10px] sm:px-[20px] lg:px-[30px] py-1 sm:py-2 bg-[#DCC4F1]">
               {NavbarLinks.map((link, index) => (
                 <li
                   key={index}
-                  className="p-[15px] rounded-[30px] font-tw text-[30px] cursor-pointer"
+                  className="py-[2px] px-[8px] sm:px-[10px] lg:px-[12px] rounded-[30px] font-tw text-[12px] sm:text-[26px] lg:text-[30px] cursor-pointer hover:bg-[linear-gradient(270deg,_#bd14f980_0%,_#ed34c880_100%)] hover:transition-all hover:duration-300"
                 >
                   <ScrollLink
                     to={link.id}
@@ -90,22 +100,22 @@ const Navbar = () => {
 
         {/* Handle Login Logout If Token is available */}
         {!token ? (
-          <div className="flex flex-col justify-between font-montserrat text-[18px] text-black font-normal gap-2 flex-shrink-0">
+          <div className="flex flex-col justify-between font-montserrat text-[8px] sm:text-[16px] lg:text-[18px] text-black font-normal gap-1 sm:gap-2 flex-shrink-0">
             <button
               onClick={() => navigate("/login")}
-              className="p-2 rounded-xl bg-[linear-gradient(270deg,_#bd14f980_0%,_#ed34c880_100%)]"
+              className="p-1 sm:p-2 rounded-xl bg-[linear-gradient(270deg,_#bd14f980_0%,_#ed34c880_100%)]"
             >
               Login
             </button>
             <button
               onClick={() => navigate("/signUp")}
-              className="p-2 rounded-xl bg-[linear-gradient(270deg,_#bd14f940_0%,_#ed34c840_100%)]"
+              className="p-1  sm:p-2 rounded-xl bg-[linear-gradient(270deg,_#bd14f940_0%,_#ed34c840_100%)]"
             >
               Sign Up
             </button>
           </div>
         ) : (
-          <div className="flex flex-col justify-between font-montserrat text-[18px] text-black font-normal gap-2 flex-shrink-0">
+          <div className="flex flex-col justify-between font-montserrat text-[8px] sm:text-[16px] lg:text-[18px] text-black font-normal gap-1 sm:gap-2 flex-shrink-0">
             <button
               onClick={() => navigate("/dashboard/my-profile")}
               className="p-2 rounded-xl bg-[linear-gradient(270deg,_#bd14f980_0%,_#ed34c880_100%)]"

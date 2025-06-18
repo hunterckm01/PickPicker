@@ -12,7 +12,7 @@ export const NavbarLinks = [
     id: "pricing"
   },
   {
-    title: "Reach Us",
+    title: "Contact",
     id: "reachus"
   },
 ];
