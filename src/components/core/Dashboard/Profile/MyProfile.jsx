@@ -28,15 +28,22 @@ const MyProfile = () => {
 
   return (
     <div className="w-screen min-h-[calc(100vh-131px)] bg-[linear-gradient(103deg,_#efdaffc0_2.13%,_#b458ff8f_104.3%)] flex flex-col ">
-
-      <div className='pt-[100px] mx-auto text-3xl font-bold flex w-[682px] justify-between'>
-        <h2>
-          Photographer Details
-        </h2>
-        <IconButton text = "More" onclick={()=>navigate("/dashboard/settings")}/>
+      <div className="pt-[100px] mx-auto text-3xl font-bold flex w-[682px] justify-between">
+        <h2>Photographer Details</h2>
+        <IconButton
+          text="More"
+          onclick={() => navigate("/dashboard/settings")}
+        />
       </div>
 
-      <form className="mt-[50px] flex flex-col gap-5 mx-auto w-[682px] ">
+      <form className="my-[50px] flex flex-col gap-5 mx-auto w-[682px] ">
+        <div className="w-full flex items-center justify-center">
+          <img
+            src={photographerDetails.image}
+            className="h-30 w-30 rounded-full"
+            alt='Profile-Picture'
+          />
+        </div>
         <div className="w-full inputBox">
           <label
             htmlFor="email"
