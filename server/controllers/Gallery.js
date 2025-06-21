@@ -351,7 +351,7 @@ export async function shareCode(req, res){
     await gallery.save()
 
     res.json({
-      link: `http://localhost:5173/preview/${gallery._id}?code=${shareCode}`,
+      link: process.env.FRONTEND_URL + `/preview/${gallery._id}?code=${shareCode}`,
     });
 
   }
@@ -399,8 +399,10 @@ export async function getClientImages(req, res){
 export async function downloadGalleryImages(req, res){
   try{
     const galleryId = req.params.id ;
-    console.log("Gallery id is", galleryId)
+    // console.log("Gallery id is", galleryId)
+
     const gallery = await Gallery.findById(galleryId);
+    
     if (!gallery || !gallery.galleryImagesUrl?.length) {
       return res
         .status(404)

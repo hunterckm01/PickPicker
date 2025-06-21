@@ -18,63 +18,60 @@ const {
   GET_GALLERY_DETAILS_API,
   CREATE_GALLERY_API,
   UPDATE_GALLERY_API,
-  DELETE_GALLERY_API, 
+  DELETE_GALLERY_API,
   ADD_GALLERY_CLIENT_API,
   ADD_GALLERY_IMAGES_API,
   GET_GALLERY_IMAGES_API,
   GET_ALL_FOLDER_API,
+  SHARE_GALLERY_API,
+  PREVIEW_GALLERY_API,
+  DOWNLOAD_GALLERY_API,
 } = galleryEndPoints;
 
-
 //GET GALLERY DETAILS ENDPOINTS
-export async function getGalleryDetails(galleryId, token){
-  let gallery = null ;
-  const toastId = toast.loading("Fetching")
-  try{
-    console.log("Gallery id ", galleryId)
-    const response = await apiConnector("GET", GET_GALLERY_DETAILS_API,
-    null,
-    {
-      Authorization: `Bearer ${token}`
-    },
-    {galleryId}
-    )
-
-    if (!response.data.success) {
-      throw new Error(response.data.message);
-    }
-    toast.success("Fetched")
-    gallery = response?.data?.data ;
-  }
-  catch(err){
-    console.log("GET GALLERY API......", err.response);
-    toast.error(err.response.data.message);
-  }
-  toast.dismiss(toastId)
-  return gallery ;
-}
-
-//ALL GALLERY END PONINTS
-export async function createGallery(data, token) {
-  let gallery = null ;  
-  const toastId = toast.loading("Creating");
+export async function getGalleryDetails(galleryId, token) {
+  let gallery = null;
+  const toastId = toast.loading("Fetching");
   try {
+    console.log("Gallery id ", galleryId);
     const response = await apiConnector(
-      "POST",
-      CREATE_GALLERY_API,
-      data,
+      "GET",
+      GET_GALLERY_DETAILS_API,
+      null,
       {
         Authorization: `Bearer ${token}`,
-      }
+      },
+      { galleryId }
     );
 
     if (!response.data.success) {
       throw new Error(response.data.message);
     }
+    toast.success("Fetched");
+    gallery = response?.data?.data;
+  } catch (err) {
+    console.log("GET GALLERY API......", err.response);
+    toast.error(err.response.data.message);
+  }
+  toast.dismiss(toastId);
+  return gallery;
+}
 
-    toast.success("New Gallery Created")
-    gallery = response?.data?.data ;
+//ALL GALLERY END PONINTS
+export async function createGallery(data, token) {
+  let gallery = null;
+  const toastId = toast.loading("Creating");
+  try {
+    const response = await apiConnector("POST", CREATE_GALLERY_API, data, {
+      Authorization: `Bearer ${token}`,
+    });
 
+    if (!response.data.success) {
+      throw new Error(response.data.message);
+    }
+
+    toast.success("New Gallery Created");
+    gallery = response?.data?.data;
   } catch (err) {
     console.log("CREATE GALLERY API......", err.response);
     toast.error(err.response.data.message);
@@ -82,186 +79,196 @@ export async function createGallery(data, token) {
   toast.dismiss(toastId);
 }
 
-export async function updateGallery(data, token){
-    let result = null ;
-    const toastId = toast.loading("Updating...")
-    try{
-        const response = await apiConnector('PUT', UPDATE_GALLERY_API, data, {Authorization: `Bearer ${token}`})
-
-        if(!response.data.success){
-            throw new Error(response.data.message)
-        }
-
-        result = response.data?.galleryDetails ;
-        toast.success("Gallery Updated Successfully")
-
-    }
-    catch(err){
-        console.log("UPDATE GALLERY API ERROR...", err.response.data.message)
-        toast.error(err.response.data.message)
-    }
-
-    toast.dismiss(toastId)
-    return result ;
-}
-
-export async function deleteGallery(galleryId, token){
-    const toastId = toast.loading("On Way To Delete...")
-    try{
-        const response = await apiConnector('POST', DELETE_GALLERY_API, {galleryId}, {Authorization: `Bearer ${token}`})
-
-        if(!response.data?.success){
-            throw new Error(response.data?.message)
-        }
-
-        toast.success("Gallery Deleted")
-    }
-    catch(err){
-        console.log("GALLERY DELETED API ERROR......", err.response?.data?.message)
-        toast.error(err.response?.data?.message)
-    }
-    toast.dismiss(toastId)
-}
-
-export async function addClientToGallery(data, token){
-    const toastId = toast.loading("Adding Client...")
-    try{
-        const response = await apiConnector('POST', ADD_GALLERY_CLIENT_API, data, {Authorization: `Bearer ${token}`})
-
-        if(!response.data?.success){
-            throw new Error(response.data?.message)
-        }
-        toast.success("Client Added Successfully")
-        
-    }
-    catch(err){
-        console.log("ADD CLIENT TO GALLERY API ERROR", err.message)
-        toast.error(err.message)
-    }
-    toast.dismiss(toastId)
-}
-
-export async function addImagesToGallery(formData, token){
-  const toastId = toast.loading("Adding Images....")
-
-  try{
-    const response = await apiConnector('POST', ADD_GALLERY_IMAGES_API, formData, {Authorization: `Bearer ${token}`})
-
-    if(!response.data.success)
-      throw new Error(response.data.message)
-
-    toast.success("Images Added Successfully");
-  }
-  catch(err){
-    console.log("ADD IMAGES TO GALLERY API ERROR....", err.response.data.message)
-    toast.error(err.message)
-  }
-  toast.dismiss(toastId)
-}
-
-export async function getGalleryImages(data, token){
-  const toastId = toast.loading("Loading...")
-  const galleryImages = []
-  try{
-    const response = await apiConnector('GET', GET_GALLERY_IMAGES_API, data, {Authorization: `Bearer ${token}`})
-
-    if(!response.data?.success){
-      throw new Error(response.data?.message)
-    }
-
-    galleryImages = response.data?.galleryImages
-  }
-  catch(err){
-    console.log("GET GALLERY IMAGES API ERROR...", err.response.data?.message)
-    toast.error(err.message)
-  }
-  toast.dismiss(toastId)
-  return galleryImages
-}
-
-export function getAllFolders(token){
-  return async (dispatch) => {
-    const toastId = toast.loading("Getting Folders..")
-    
-    try{
-      console.log("Token is", token)
-      const response = await apiConnector(
-        'GET',
-        GET_ALL_FOLDER_API,
-        null, 
-        {Authorization: `Bearer ${token}`}
-       )
-
-      console.log("Response is", response)
-
-      if(!response.data?.success){
-       throw new Error(response.data?.message)
-      }
-
-      const folders = response.data?.data  ;
-      
-      if(folders.length === 0)
-        toast.error("You don't have any Folders, Please Add")
-      else
-      toast.success("Got All Your Folders")
-    
-    dispatch(setFolders(folders))
-    // console.log("Folders are", folders)
-    }
-    catch(err){
-      console.log("Could not get the Folders", err.message)
-      toast.error(err.message)
-    }
-    toast.dismiss(toastId)
-  }
-}
-
-
-//ALL CLIENTS END POINTS
-export async function createClient(data, token){
-  const toastId = toast.loading("Creating...")
-  try{
-    // console.log("Data is", data)
-    const response = await apiConnector('POST', CREATE_CLIENT_API, data, {Authorization: `Bearer ${token}`})
-
-    if(!response.data.success){
-      throw new Error(response.data.message)
-    }
-
-    toast.success("New Client Created")
-
-  }
-  catch(err){
-    console.log('CREATE CLIENT API ERROR', err.messaage)
-    toast.error(err.message)
-  }
-  toast.dismiss(toastId)
-}
-
-export async function updateClient(data, token){
-  const toastId = toast.loading("Updating...")
-  try{
-    const response = await apiConnector('PUT', UPDATE_CLIENT_API, data, {Authorization: `Bearer ${token}`})
-
-    if(!response.data.success)
-      throw new Error(response.data.message)
-    
-    toast.success("Updated Client")
-  }
-  catch(err){
-    console.log("UPDATE CLIENT API ERROR...", err.response.data.message)
-    toast.error(err.message)
-  }
-  toast.dismiss(toastId)
-} 
-
-export async function deleteClient(clientId, token){
-  const toastId = toast.loading("Deleting...");
+export async function updateGallery(data, token) {
+  let result = null;
+  const toastId = toast.loading("Updating...");
   try {
-    console.log("client data is", clientId)
-    const response = await apiConnector('DELETE', DELETE_CLIENT_API, { clientId }, {
+    const response = await apiConnector("PUT", UPDATE_GALLERY_API, data, {
       Authorization: `Bearer ${token}`,
     });
+
+    if (!response.data.success) {
+      throw new Error(response.data.message);
+    }
+
+    result = response.data?.galleryDetails;
+    toast.success("Gallery Updated Successfully");
+  } catch (err) {
+    console.log("UPDATE GALLERY API ERROR...", err.response.data.message);
+    toast.error(err.response.data.message);
+  }
+
+  toast.dismiss(toastId);
+  return result;
+}
+
+export async function deleteGallery(galleryId, token) {
+  const toastId = toast.loading("On Way To Delete...");
+  try {
+    const response = await apiConnector(
+      "POST",
+      DELETE_GALLERY_API,
+      { galleryId },
+      { Authorization: `Bearer ${token}` }
+    );
+
+    if (!response.data?.success) {
+      throw new Error(response.data?.message);
+    }
+
+    toast.success("Gallery Deleted");
+  } catch (err) {
+    console.log("GALLERY DELETED API ERROR......", err.response?.data?.message);
+    toast.error(err.response?.data?.message);
+  }
+  toast.dismiss(toastId);
+}
+
+export async function addClientToGallery(data, token) {
+  const toastId = toast.loading("Adding Client...");
+  try {
+    const response = await apiConnector("POST", ADD_GALLERY_CLIENT_API, data, {
+      Authorization: `Bearer ${token}`,
+    });
+
+    if (!response.data?.success) {
+      throw new Error(response.data?.message);
+    }
+    toast.success("Client Added Successfully");
+  } catch (err) {
+    console.log("ADD CLIENT TO GALLERY API ERROR", err.message);
+    toast.error(err.message);
+  }
+  toast.dismiss(toastId);
+}
+
+export async function addImagesToGallery(formData, token) {
+  const toastId = toast.loading("Adding Images....");
+
+  try {
+    const response = await apiConnector(
+      "POST",
+      ADD_GALLERY_IMAGES_API,
+      formData,
+      { Authorization: `Bearer ${token}` }
+    );
+
+    if (!response.data.success) throw new Error(response.data.message);
+
+    toast.success("Images Added Successfully");
+  } catch (err) {
+    console.log(
+      "ADD IMAGES TO GALLERY API ERROR....",
+      err.response.data.message
+    );
+    toast.error(err.message);
+  }
+  toast.dismiss(toastId);
+}
+
+export async function getGalleryImages(data, token) {
+  const toastId = toast.loading("Loading...");
+  const galleryImages = [];
+  try {
+    const response = await apiConnector("GET", GET_GALLERY_IMAGES_API, data, {
+      Authorization: `Bearer ${token}`,
+    });
+
+    if (!response.data?.success) {
+      throw new Error(response.data?.message);
+    }
+
+    galleryImages = response.data?.galleryImages;
+  } catch (err) {
+    console.log("GET GALLERY IMAGES API ERROR...", err.response.data?.message);
+    toast.error(err.message);
+  }
+  toast.dismiss(toastId);
+  return galleryImages;
+}
+
+export function getAllFolders(token) {
+  return async (dispatch) => {
+    const toastId = toast.loading("Getting Folders..");
+
+    try {
+      console.log("Token is", token);
+      const response = await apiConnector("GET", GET_ALL_FOLDER_API, null, {
+        Authorization: `Bearer ${token}`,
+      });
+
+      console.log("Response is", response);
+
+      if (!response.data?.success) {
+        throw new Error(response.data?.message);
+      }
+
+      const folders = response.data?.data;
+
+      if (folders.length === 0)
+        toast.error("You don't have any Folders, Please Add");
+      else toast.success("Got All Your Folders");
+
+      dispatch(setFolders(folders));
+      // console.log("Folders are", folders)
+    } catch (err) {
+      console.log("Could not get the Folders", err.message);
+      toast.error(err.message);
+    }
+    toast.dismiss(toastId);
+  };
+}
+
+//ALL CLIENTS END POINTS
+export async function createClient(data, token) {
+  const toastId = toast.loading("Creating...");
+  try {
+    // console.log("Data is", data)
+    const response = await apiConnector("POST", CREATE_CLIENT_API, data, {
+      Authorization: `Bearer ${token}`,
+    });
+
+    if (!response.data.success) {
+      throw new Error(response.data.message);
+    }
+
+    toast.success("New Client Created");
+  } catch (err) {
+    console.log("CREATE CLIENT API ERROR", err.messaage);
+    toast.error(err.message);
+  }
+  toast.dismiss(toastId);
+}
+
+export async function updateClient(data, token) {
+  const toastId = toast.loading("Updating...");
+  try {
+    const response = await apiConnector("PUT", UPDATE_CLIENT_API, data, {
+      Authorization: `Bearer ${token}`,
+    });
+
+    if (!response.data.success) throw new Error(response.data.message);
+
+    toast.success("Updated Client");
+  } catch (err) {
+    console.log("UPDATE CLIENT API ERROR...", err.response.data.message);
+    toast.error(err.message);
+  }
+  toast.dismiss(toastId);
+}
+
+export async function deleteClient(clientId, token) {
+  const toastId = toast.loading("Deleting...");
+  try {
+    console.log("client data is", clientId);
+    const response = await apiConnector(
+      "DELETE",
+      DELETE_CLIENT_API,
+      { clientId },
+      {
+        Authorization: `Bearer ${token}`,
+      }
+    );
 
     if (!response.data.success) throw new Error(response.data.message);
 
@@ -273,7 +280,7 @@ export async function deleteClient(clientId, token){
   toast.dismiss(toastId);
 }
 
-export async function deleteAllClient(token){
+export async function deleteAllClient(token) {
   const toastId = toast.loading("Deleting...");
   try {
     const response = await apiConnector("DELETE", DELETE_ALL_CLIENT_API, null, {
@@ -290,55 +297,50 @@ export async function deleteAllClient(token){
   toast.dismiss(toastId);
 }
 
-export function getAllClient(token){
-  return async(dispatch) =>{
-    const toastId = toast.loading("Loading...")
-    dispatch(setLoading(true))
-    
-    try{
+export function getAllClient(token) {
+  return async (dispatch) => {
+    const toastId = toast.loading("Loading...");
+    dispatch(setLoading(true));
+
+    try {
       // console.log("token is", token)
-      const response = await apiConnector(
-        "GET", 
-        GET_ALL_CLIENT_API,
-        "hunter",
-        {
-          Authorization: `Bearer ${token}`
-        }
-      )
-      console.log("Response is", response)
+      const response = await apiConnector("GET", GET_ALL_CLIENT_API, "hunter", {
+        Authorization: `Bearer ${token}`,
+      });
+      console.log("Response is", response);
 
-      if(!response.data?.success)
-        throw new Error(response.data?.message)
+      if (!response.data?.success) throw new Error(response.data?.message);
 
-      const clients = response.data?.allClients ;
+      const clients = response.data?.allClients;
       // console.log("Clients is", clients.length)
-      if(clients.length === 0)
-        toast.error("You don't have any Clients, Please add")
-      else{
-        localStorage.setItem("clients", JSON.stringify(clients))
+      if (clients.length === 0)
+        toast.error("You don't have any Clients, Please add");
+      else {
+        localStorage.setItem("clients", JSON.stringify(clients));
         // toast.success("Got all your Clients")
       }
-      dispatch(setClients(clients))
+      dispatch(setClients(clients));
+    } catch (err) {
+      console.log("GET ALL CLIENTS API ERROR", err.message);
+      toast.error(err.message);
     }
-    catch(err){
-      console.log("GET ALL CLIENTS API ERROR", err.message)
-      toast.error(err.message)
-    }
-    dispatch(setLoading(false)) ;
-    toast.dismiss(toastId)
-  }
+    dispatch(setLoading(false));
+    toast.dismiss(toastId);
+  };
 }
 
 // Client Images Forward and get them api
-export async function shareCode(galleryId){
-  try{
-    const response = await apiConnector("POST", `http://localhost:4000/api/v1/gallery/${galleryId}/share`,
-    null)
+export async function shareCode(galleryId) {
+  try {
+    const response = await apiConnector(
+      "POST",
+      SHARE_GALLERY_API(galleryId),
+      null
+    );
 
-    console.log("Share link response is", response?.data)
-    return response?.data
-  }
-  catch(err){
+    console.log("Share link response is", response?.data);
+    return response?.data;
+  } catch (err) {
     console.error(
       "Error sharing the gallery:",
       err?.response?.data || err.message
@@ -352,19 +354,18 @@ export async function shareCode(galleryId){
   }
 }
 
-export async function previewGallery(galleryId, shareCode){
-  try{
-    console.log("Gallery id and share code is", galleryId, shareCode)
+export async function previewGallery(galleryId, shareCode) {
+  try {
+    console.log("Gallery id and share code is", galleryId, shareCode);
     const response = await apiConnector(
       "GET",
-      `http://localhost:4000/api/v1/gallery/${galleryId}/images?code=${shareCode}`,
+      PREVIEW_GALLERY_API(galleryId, shareCode),
       null
     );
 
-    console.log("Gallery Preview Response", response?.data)
-    return response?.data
-  }
-  catch(err){
+    console.log("Gallery Preview Response", response?.data);
+    return response?.data;
+  } catch (err) {
     console.error(
       "Error fetching gallery preview:",
       err?.response?.data || err.message
@@ -378,25 +379,22 @@ export async function previewGallery(galleryId, shareCode){
   }
 }
 
-export async function downloadGallery(galleryId){
-  const toastId = toast.loading("Downloading...")
-  try{
-    console.log("Galery id in frontend is ", galleryId)
+export async function downloadGallery(galleryId) {
+  const toastId = toast.loading("Downloading...");
+  try {
+    console.log("Galery id in frontend is ", galleryId);
     const response = await axios.get(
-      `http://localhost:4000/api/v1/gallery/${galleryId}/download`,
+      DOWNLOAD_GALLERY_API(galleryId),
       {
-        responseType: "blob"
+        responseType: "blob",
       }
     );
 
-    fileDownload(response.data, "favImages.zip")
-    toast.success("Downloaded Successfully")
+    fileDownload(response.data, "favImages.zip");
+    toast.success("Downloaded Successfully");
+  } catch (err) {
+    console.log("Failed to download Images", err);
+    toast.dismiss("Could Not Download");
   }
-  catch(err){
-    console.log("Failed to download Images", err)
-    toast.dismiss("Could Not Download")
-  }
-  toast.dismiss(toastId)
+  toast.dismiss(toastId);
 }
-
-
