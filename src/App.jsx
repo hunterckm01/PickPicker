@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import AppRoutes from './routes/appRoutes'
+import AppRoutes from './routes/AppRoutes'
 import Navbar from './components/common/Navbar'
 import { useLocation } from 'react-router'
 
