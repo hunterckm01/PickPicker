@@ -74,7 +74,7 @@ const AppRoutes = () => {
         <Route path="/dashboard/photo-selection/:galleryId" element={<PhotoSelection />} />
       </Route>
 
-      {/* PHOTOGRAPHER PREVIEW PAGE */}
+      {/* CLIENT PREVIEW PAGE */}
       <Route path = "/preview/:id" element = {<PreviewImages/>}></Route>
 
       {/* Route Path For Error */}

@@ -20,7 +20,7 @@ export const galleryEndPoints = {
   GET_GALLERY_IMAGES_API: BACKEND_URL + "/gallery/fetchImages",
   GET_ALL_FOLDER_API: BACKEND_URL + "/gallery/getAllFolders",
   SHARE_GALLERY_API: (galleryId) => BACKEND_URL + `/gallery/${galleryId}/share`,
-  PREVIEW_GALLERY_API: (galleryId, shareCode)=> BACKEND_URL + `/gallery/${galleryId}/images?code=${shareCode}`,
+  PREVIEW_GALLERY_API: (galleryId, shareCode) => BACKEND_URL + `/gallery/${galleryId}/images?code=${shareCode}`,
   DOWNLOAD_GALLERY_API: (galleryId) => BACKEND_URL + `/gallery/${galleryId}/download`  
 };
 

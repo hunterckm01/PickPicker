@@ -367,6 +367,8 @@ export async function getClientImages(req, res){
   try{
     console.log("yes the work is done")
     console.log("In the get client images")
+    // console.log("request parameter is", req.params)
+    // console.log("Code is", req.query)
     const {id} = req.params ;
     const {code} = req.query ;
 

@@ -11,7 +11,6 @@ const PreviewImages = () => {
     // const [err, setErr] = useState("")
 
 
-
     useEffect(()=>{
         const getImages = async() => {
             const response = await previewGallery(galleryId, code)
