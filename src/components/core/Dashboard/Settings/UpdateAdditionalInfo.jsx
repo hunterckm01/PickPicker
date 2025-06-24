@@ -27,21 +27,21 @@ const UpdateAdditionalInfo = () => {
         console.log("Photographer details is", photographer)
     },[])
   return (
-    <div className="pt-[50px] w-[900px] mx-auto flex flex-col gap-8">
+    <div className="pt-[50px] w-[330px] sm:w-[600px] lg:w-[900px] mx-auto flex flex-col gap-8">
       <div className="flex justify-between">
-        <h2 className="font-bold text-3xl font-sunflower">
+        <h2 className="font-bold text-xl sm:text-3xl font-sunflower">
           Additional Information
         </h2>
 
         <IconButton text="Update" onclick={handleSubmit(onSubmit)} />
       </div>
 
-      <form className="grid grid-cols-2 gap-4 ">
+      <form className="grid grid-cols-1 sm:grid-cols-2 gap-4 ">
         {/* About */}
         <div className="w-full inputBox">
           <label
             htmlFor="about"
-            className="font-syne text-[16px] font-medium p-3"
+            className="w-[40%] sm:w-fit font-syne text-[12px] sm:text-[16px] font-medium p-3"
           >
             About
           </label>
@@ -71,7 +71,7 @@ const UpdateAdditionalInfo = () => {
         <div className="w-full inputBox self-start">
           <label
             htmlFor="contactNumber"
-            className="font-syne text-[16px] font-medium p-3"
+            className="w-[40%] sm:w-fit font-syne text-[12px] sm:text-[16px] font-medium p-3"
           >
             Phone No.
           </label>
@@ -101,7 +101,7 @@ const UpdateAdditionalInfo = () => {
         <div className="w-full inputBox">
           <label
             htmlFor="dob"
-            className="font-syne text-[16px] font-medium p-3"
+            className="w-[40%] sm:w-fit font-syne text-[12px] sm:text-[16px] font-medium p-3"
           >
             Date Of Birth
           </label>
@@ -126,7 +126,7 @@ const UpdateAdditionalInfo = () => {
         <div className="w-full inputBox">
           <label
             htmlFor="gender"
-            className="font-syne text-[16px] font-medium p-3"
+            className="w-[40%] sm:w-fit font-syne text-[12px] sm:text-[16px] font-medium p-3"
           >
             Gender
           </label>

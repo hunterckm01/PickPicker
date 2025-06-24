@@ -24,7 +24,7 @@ const UpdateBasicInformation = () => {
   }
 
   return (
-    <div className="pt-[50px] w-[900px] mx-auto flex flex-col gap-8">
+    <div className="pt-[50px] w-[350px] sm:w-[600px] lg:w-[900px] mx-auto flex flex-col gap-8">
       <div className="flex justify-between">
         <h2 className="font-bold text-3xl font-sunflower">Basic Information</h2>
 
@@ -33,13 +33,13 @@ const UpdateBasicInformation = () => {
 
       <form
         // onSubmit={handleSubmit(onSubmit)}
-        className="grid grid-cols-2 gap-4 "
+        className="grid grid-cols-1 sm:grid-cols-2 gap-4 "
       >
         {/* Email */}
         <div className="w-full inputBox">
           <label
             htmlFor="email"
-            className="font-syne text-[16px] font-medium p-3"
+            className="w-[40%] sm:w-fit font-syne text-[12px] sm:text-[16px] font-medium p-3"
           >
             Email
           </label>
@@ -48,7 +48,7 @@ const UpdateBasicInformation = () => {
               name="email"
               value={photographer.email}
               type="text"
-              className="font-syne relative left-5 text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0 text-slate-500 bg-transparent cursor-not-allowed"
+              className="font-syne relative left-5 text-[12px] sm:text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0 text-slate-500 bg-transparent cursor-not-allowed"
               disabled
             />
           </div>
@@ -58,7 +58,7 @@ const UpdateBasicInformation = () => {
         <div className="w-full inputBox">
           <label
             htmlFor="accountType"
-            className="font-syne text-[16px] font-medium p-3"
+            className="w-[40%] sm:w-fit font-syne text-[12px] sm:text-[16px] font-medium p-3"
           >
             Account
           </label>
@@ -67,7 +67,7 @@ const UpdateBasicInformation = () => {
               name="accountType"
               value={photographer.accountType}
               type="text"
-              className="font-syne relative left-5 text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0 text-slate-500 bg-transparent cursor-not-allowed"
+              className="font-syne relative left-5 text-[12px] sm:text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0 text-slate-500 bg-transparent cursor-not-allowed"
               disabled
             />
           </div>
@@ -77,7 +77,7 @@ const UpdateBasicInformation = () => {
         <div className="w-full inputBox">
           <label
             htmlFor="firstName"
-            className="font-syne text-[16px] font-medium p-3"
+            className="w-[40%] sm:w-fit font-syne text-[12px] sm:text-[16px] font-medium p-3"
           >
             First Name
           </label>
@@ -87,7 +87,7 @@ const UpdateBasicInformation = () => {
               defaultValue={photographer?.firstName}
               type="text"
               minLength={1}
-              className="font-syne relative left-5 text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0 text-slate-500 bg-transparent "
+              className="font-syne relative left-5 text-[12px] sm:text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0 text-slate-500 bg-transparent "
               {...register("firstName", { required: true })}
             />
             {errors.firstName && (
@@ -102,7 +102,7 @@ const UpdateBasicInformation = () => {
         <div className="w-full inputBox">
           <label
             htmlFor="lastName"
-            className="font-syne text-[16px] font-medium p-3"
+            className="w-[40%] sm:w-fit font-syne text-[12px] sm:text-[16px] font-medium p-3"
           >
             Last Name
           </label>
@@ -112,7 +112,7 @@ const UpdateBasicInformation = () => {
               defaultValue={photographer?.lastName}
               type="text"
               minLength={1}
-              className="font-syne relative left-5 text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0 text-slate-500 bg-transparent "
+              className="font-syne relative left-5 text-[12px] sm:text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0 text-slate-500 bg-transparent "
               {...register("lastName", { required: true })}
             />
             {errors.lastName && (
@@ -127,7 +127,7 @@ const UpdateBasicInformation = () => {
         <div className="w-full inputBox">
           <label
             htmlFor="studioName"
-            className="font-syne text-[16px] font-medium p-3"
+            className="w-[40%] sm:w-fit font-syne text-[12px] sm:text-[16px] font-medium p-3"
           >
             Studio Name
           </label>
@@ -136,7 +136,7 @@ const UpdateBasicInformation = () => {
               name="studioName"
               defaultValue={photographer.studioName}
               type="text"
-              className="font-syne relative left-5 text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0 text-slate-500 bg-transparent "
+              className="font-syne relative left-5 text-[12px] sm:text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0 text-slate-500 bg-transparent "
               {...register("studioName", { required: true })}
               minLength={3}
             />

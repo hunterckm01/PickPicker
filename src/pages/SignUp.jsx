@@ -86,7 +86,7 @@ const SignUp = () => {
                 <label
                   htmlFor="studio"
                   id="studio"
-                  className="font-syne text-[10px] sm:text-[16px] font-medium p-3"
+                  className="w-[40%] sm:w-fit font-syne text-[12px] sm:text-[16px] font-medium p-3"
                 >
                   Studio
                 </label>
@@ -118,7 +118,7 @@ const SignUp = () => {
                 <label
                   htmlFor="email"
                   id="email"
-                  className="font-syne text-[10px] sm:text-[16px] font-medium p-3"
+                  className="w-[40%] sm:w-fit font-syne text-[12px] sm:text-[16px] font-medium p-3"
                 >
                   Email
                 </label>
@@ -151,7 +151,7 @@ const SignUp = () => {
                 <label
                   htmlFor="firstName"
                   id="firstName"
-                  className="font-syne text-[10px] sm:text-[16px] font-medium p-3"
+                  className="w-[40%] sm:w-fit font-syne text-[12px] sm:text-[16px] font-medium p-3"
                 >
                   First Name
                 </label>
@@ -180,7 +180,7 @@ const SignUp = () => {
                 <label
                   htmlFor="lastName"
                   id="lastName"
-                  className="font-syne text-[10px] sm:text-[16px] font-medium p-3"
+                  className="w-[40%] sm:w-fit font-syne text-[12px] sm:text-[16px] font-medium p-3"
                 >
                   Last Name
                 </label>
@@ -209,7 +209,7 @@ const SignUp = () => {
                 <label
                   htmlFor="password"
                   id="password"
-                  className="font-syne text-[10px] sm:text-[16px] font-medium p-3"
+                  className="w-[40%] sm:w-fit font-syne text-[12px] sm:text-[16px] font-medium p-3"
                 >
                   Password
                 </label>
@@ -257,7 +257,7 @@ const SignUp = () => {
                 <label
                   htmlFor="confirmPsd"
                   id="confirmPsd"
-                  className="font-syne sm:text-[16px] font-medium p-3 text-[10px]"
+                  className="font-w-[40%] sm:w-fit font-syne text-[12px] sm:text-[16px] font-medium p-3"
                 >
                   {"Confirm Password"}
                 </label>
@@ -301,7 +301,7 @@ const SignUp = () => {
                 <label
                   htmlFor="Otp"
                   id="Otp"
-                  className="font-syne text-[16px] font-medium p-3"
+                  className="w-[40%] sm:w-fit font-syne text-[12px] sm:text-[16px] font-medium p-3"
                 >
                   Otp
                 </label>

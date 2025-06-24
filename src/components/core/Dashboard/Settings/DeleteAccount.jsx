@@ -15,7 +15,7 @@ const DeleteAccount = () => {
         console.log("Account Deleted Successfully")
     }
   return (
-    <div className="py-[50px] w-[900px] mx-auto flex flex-col gap-8">
+    <div className="py-[50px] w-[330px] sm:w-[600px] lg:w-[900px] mx-auto flex flex-col gap-8">
       <div className="flex flex-col gap-4">
         <h2 className="font-bold text-3xl font-sunflower">Delete Account</h2>
 

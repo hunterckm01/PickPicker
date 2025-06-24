@@ -62,7 +62,7 @@ const PhotographerLogin = () => {
             <label
               htmlFor="email"
               id="email"
-              className="font-syne text-[10px] sm:text-[16px] font-medium p-3"
+              className="w-[40%] sm:w-fit font-syne text-[12px] sm:text-[16px] font-medium p-3"
             >
               Email
             </label>
@@ -90,7 +90,7 @@ const PhotographerLogin = () => {
             <label
               htmlFor="password"
               id="password"
-              className="font-syne text-[10px] sm:text-[16px] font-medium p-3"
+              className="w-[40%] sm:w-fit font-syne text-[12px] sm:text-[16px] font-medium p-3"
             >
               Password
             </label>
