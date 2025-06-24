@@ -3,6 +3,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
 @import "tailwindcss";
 
+:root{
+   --font-sunflower: "Sunflower", sans-serif;
+    --font-montserrat: "Montserrat", sans-serif;
+    --font-tw: "Tw-Cen-MT-Condensed", sans-serif;
+    --font-syne: "Syne", sans-serif;
+
+}
+
 @font-face{
   font-family: Tw-Cen-MT-Condensed;
   src: url("./utils/Tw-Cen-MT-Condensed.ttf");

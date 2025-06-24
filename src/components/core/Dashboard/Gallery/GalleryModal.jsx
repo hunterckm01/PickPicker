@@ -28,29 +28,20 @@ const GalleryModal = ({setGalleryModal, token}) => {
 
   return (
     <div className="fixed h-screen w-screen inset-0 backdrop-blur-[5px] flex items-center justify-center">
-      <div className="w-[510px] border-1 border-[rgba(0,0,0,0.2)] rounded-xl pr-5 pl-10 pb-12 pt-5 bg-[linear-gradient(297deg,rgba(255,0,102,0.6)_0.12%,rgba(255,51,132,0.6)_99.88%)] font-normal">
+      <div className="w-[350px] sm:w-[510px] border-1 border-[rgba(0,0,0,0.2)] rounded-xl px-2 pt-2 pb-4 sm:pr-5 sm:pl-10 sm:pb-12 sm:pt-5 bg-[linear-gradient(297deg,rgba(255,0,102,0.6)_0.12%,rgba(255,51,132,0.6)_99.88%)] font-normal">
         <form
           className="flex flex-col font-syne"
           onSubmit={handleSubmit(folderSubmit)}
         >
           <div className="flex justify-between w-full mb-5">
-            <p className="text-[28px] text-lightBlack self-center ">
+            <p className="text-[14px] sm:text-[28px] text-lightBlack self-center  ">
               {/* {editClient ? "Edit Client" : "Add Client"} */}
               Add Folder
             </p>
             <div className="flex gap-2">
-              <button className="self-end rounded-full border-2 border-lightBlack" >
-                <IoMdAdd className="h-[30px] w-[30px]" />
+              <button className="self-end rounded-full border-2 border-lightBlack">
+                <IoMdAdd className="h-[15px] w-[15px] sm:h-[30px] sm:w-[30px]" />
               </button>
-              {/* {editClient ? ( //Edit Client Button
-                   <button className="self-end rounded-full  ">
-                     <RxUpdate className="h-[30px] w-[30px]" />
-                   </button>
-                 ) : ( //Create New Client Button
-                   <button className="self-end rounded-full border-2 border-lightBlack ">
-                     <IoMdAdd className="h-[30px] w-[30px]" />
-                   </button>
-                 )} */}
               <button
                 className="self-end rounded-full border-2 border-lightBlack"
                 onClick={() => {
@@ -58,7 +49,7 @@ const GalleryModal = ({setGalleryModal, token}) => {
                   setCustomerModal(false);
                 }}
               >
-                <IoCloseSharp className="h-[30px] w-[30px]" />
+                <IoCloseSharp className="h-[15px] w-[15px] sm:h-[30px] sm:w-[30px]" />
               </button>
             </div>
           </div>
@@ -68,7 +59,7 @@ const GalleryModal = ({setGalleryModal, token}) => {
               id="galleryName"
               type="text"
               placeholder="Event Name"
-              className="bg-[rgba(255,255,255,0.1)] text-2xl pl-2 border-1 border-[rgba(255,255,255,0.1)] rounded-[10px] w-[404px] py-2"
+              className="bg-[rgba(255,255,255,0.1)] text-lg sm:text-2xl pl-2 border-1 border-[rgba(255,255,255,0.1)] rounded-[10px] w-[320px] sm:w-[404px] py-2"
               {...register("galleryName", { required: true })}
             />
             {errors.galleryName && (

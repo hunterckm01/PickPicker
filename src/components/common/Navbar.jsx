@@ -56,7 +56,7 @@ const Navbar = () => {
             </p>
           </div>
         ) : (
-          <img src={logoPurple} className="h-[71px] w-[71px]" />
+          <img src={logoPurple} className="h-[25px] sm:h-[35px] lg:h-[50px]" />
         )}
 
         <div>
@@ -80,11 +80,11 @@ const Navbar = () => {
               ))}
             </ul>
           ) : (
-            <ul className="flex items-center rounded-[18px] gap-[21px] px-[30px] py-2 bg-[#DCC4F1]">
+            <ul className="flex items-center rounded-[18px] gap-[4px] sm:gap-[14px] lg:gap-[21px] px-[10px] sm:px-[20px] lg:px-[30px] py-1 sm:py-2 bg-[#DCC4F1]">
               {photographerNavLinks.map((link, index) => (
                 <li
                   key={index}
-                  className={`py-[2px] px-[12px] rounded-[30px] font-tw text-[30px] cursor-pointer ${
+                  className={`py-[2px] px-[8px] sm:px-[10px] lg:px-[12px] rounded-[30px] font-tw text-[12px] sm:text-[26px] lg:text-[30px] cursor-pointer hover:bg-[linear-gradient(270deg,_#bd14f980_0%,_#ed34c880_100%)] hover:transition-all hover:duration-300 ${
                     matchRoute(link.path)
                       ? "bg-[linear-gradient(270deg,_#bd14f980_0%,_#ed34c880_100%)] transition-all duration-300"
                       : ""
@@ -118,13 +118,13 @@ const Navbar = () => {
           <div className="flex flex-col justify-between font-montserrat text-[8px] sm:text-[16px] lg:text-[18px] text-black font-normal gap-1 sm:gap-2 flex-shrink-0">
             <button
               onClick={() => navigate("/dashboard/my-profile")}
-              className="p-2 rounded-xl bg-[linear-gradient(270deg,_#bd14f980_0%,_#ed34c880_100%)]"
+              className="p-1 sm:p-2 rounded-xl bg-[linear-gradient(270deg,_#bd14f940_0%,_#ed34c840_100%)]"
             >
               Profile
             </button>
             <button
               onClick={logoutHandler}
-              className="p-2 rounded-xl bg-[linear-gradient(270deg,_#bd14f940_0%,_#ed34c840_100%)]"
+              className="p-1  sm:p-2 rounded-xl bg-[linear-gradient(270deg,_#bd14f940_0%,_#ed34c840_100%)]"
             >
               Log Out
             </button>

@@ -59,3 +59,40 @@ input[type=number] {
 button{
     cursor: pointer ;
 }
+
+.inputAnsPc{
+    font-family: var(--font-syne);
+    position: relative;
+    left: 20px;
+    font-size: 16px;
+    padding-right: 8px;
+    font-weight: 500;
+    width: calc(100%-20px);
+    outline: none;
+}
+/*
+.inputLaMobile{
+    font-family: var(--font-syne);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0px 0px 4px 4px ;
+    width: 100%;
+}
+
+.inputNameNecessary{
+    font-size: 8px;
+    position: relative;
+    top: -4px;
+    color: #9f0712;
+}
+
+.inputAnsMobile{
+    font-family: var(--font-syne);
+    position: relative;
+    left: 4px ;
+    font-size: 12px;
+    padding-right: 8px;
+    font-weight: 500;
+    width: calc(100%-20px);
+    outline: none;
+}*/

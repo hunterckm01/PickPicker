@@ -57,6 +57,6 @@ picApp.use("/api/v1/gallery", galleryRoutes)
 picApp.use("/api/v1/profile", profileRoutes);
 
 //SERVER LISTEN PORT
-picApp.listen(PORT, ()=>{
+picApp.listen(PORT, '0.0.0.0', ()=>{
     console.log(`Pic Picker Started on ${PORT}`)
 })

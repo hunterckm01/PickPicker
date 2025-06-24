@@ -33,44 +33,41 @@ const MyGallery = () => {
   }
 
   return (
-    <section className="w-full min-h-[calc(100vh-131px)] bg-[linear-gradient(103deg,_#efdaffc0_2.13%,_#b458ff8f_104.3%)]">
-      <div className="flex justify-between pt-[50px] px-[120px]">
+    <section className="w-full min-h-[calc(100vh-50px)] sm:min-h-[calc(100vh-131px)] bg-[linear-gradient(103deg,_#efdaffc0_2.13%,_#b458ff8f_104.3%)]">
+      <div className="flex justify-between pt-[50px] px-[30px] sm:px-[120px]">
         {/* No of Folders */}
         <div className="flex flex-col ">
-          <p className="font-sunflower text-[36px] font-bold tracking-[1.8px]">
+          <p className="font-sunflower text-[18px] sm:text-[36px] font-bold tracking-[1.3px] sm:tracking-[1.8px]">
             Folder Selection
           </p>
-          <p className="font-tw font-normal tracking-[3px] text-[30px] text-[#A19999] mt-[-10px]">
+          <p className="font-tw font-normal tracking-[2px] sm:tracking-[3px] text-[14px] sm:text-[30px] text-[#A19999] mt-[-5px]">
             {folders.length} Folders
           </p>
         </div>
 
         {/* Add Folder Button */}
-        <IconButton
-          text={"Add Folder"}
-          onclick={() => setGalleryModal(true)}
-        />
+        <IconButton text={"Add Folder"} onclick={() => setGalleryModal(true)} />
       </div>
 
       {/* Add Folder List */}
-      <ul className="w-full px-[150px] font-syne mt-10 grid grid-cols-4 gap-x-30 gap-y-20 pb-10 ">
+      <ul className="w-full px-[30px] sm:px-[150px] font-syne mt-10 grid grid-cols-4 gap-x-30 gap-y-20 pb-10 ">
         {folders?.map((gallery) => (
-          <li key = {gallery._id} onClick = {()=>selectGallery(gallery, gallery._id)} className="w-[200px] h-[135px] bg-[linear-gradient(297deg,rgba(255,0,102,0.8)_0.12%,rgba(255,51,132,0.8)_99.88%)] text-2xl text-lightBlack text-center flex justify-center items-center rounded-2xl relative cursor-pointer">
-            <p className='px-2 text-xl'>
-              {gallery.galleryName}
-            </p>
-            <span className='absolute top-[80%] right-[10%] text-[14px]'>{gallery.galleryImagesUrl.length} Images</span>
+          <li
+            key={gallery._id}
+            onClick={() => selectGallery(gallery, gallery._id)}
+            className="w-[100px] sm:w-[200px] h-[80px] sm:h-[135px] bg-[linear-gradient(297deg,rgba(255,0,102,0.8)_0.12%,rgba(255,51,132,0.8)_99.88%)] text-lg sm:text-2xl text-lightBlack text-center flex justify-center items-center rounded-2xl relative cursor-pointer"
+          >
+            <p className="px-2 text-base sm:text-xl">{gallery.galleryName}</p>
+            <span className="absolute top-[80%] right-[10%] text-[6px] sm:text-[14px]">
+              {gallery.galleryImagesUrl.length} Images
+            </span>
           </li>
         ))}
       </ul>
 
-      {
-        galleryModal && (
-          <GalleryModal setGalleryModal = {setGalleryModal}
-          token = {token}
-          />
-        )
-      }
+      {galleryModal && (
+        <GalleryModal setGalleryModal={setGalleryModal} token={token} />
+      )}
     </section>
   );
 }

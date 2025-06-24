@@ -26,7 +26,7 @@ const SignUp = () => {
 
   function emailHandler(e) {
     setEmail(e.target.value);
-    // console.log("email now is", email)
+    console.log("email now is", e.target.value);
   }
 
   const validateEmail = () => {
@@ -67,14 +67,14 @@ const SignUp = () => {
         <div className="w-full">
           {/* Photographer Logo */}
           <div className="flex w-full justify-center items-center relative top-[50px]">
-            <div className=" flex items-center justify-center bg-[#D9D9D9] w-[72px] h-[72px]  mx-auto font-syne text-black rounded-full  text-[60px]">
+            <div className="flex items-center justify-center bg-[#D9D9D9] w-[72px] h-[72px]  mx-auto font-syne text-black rounded-full  text-[60px]">
               <p className="text-center relative top-[-10px]">p</p>
             </div>
           </div>
-          {/* Form */}
-          <div className="w-full mt-[80px] ">
+          {/* Form  For tablet and pc*/}
+          <div className="w-full mt-[80px]">
             <form
-              className="flex flex-col gap-5 mx-auto w-[682px]"
+              className="flex flex-col gap-5 mx-auto w-[340px] sm:w-[600px] lg:w-[682px]"
               onSubmit={handleSubmit(onSubmit)}
             >
               {/* Back Button */}
@@ -86,7 +86,7 @@ const SignUp = () => {
                 <label
                   htmlFor="studio"
                   id="studio"
-                  className="font-syne text-[16px] font-medium p-3"
+                  className="font-syne text-[10px] sm:text-[16px] font-medium p-3"
                 >
                   Studio
                 </label>
@@ -97,7 +97,7 @@ const SignUp = () => {
                     type="text"
                     id="studio"
                     placeholder="shanu.fetish"
-                    className="font-syne relative left-5 text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0"
+                    className="font-syne relative left-5 text-[12px] sm:text-[16px] font-medium w-[calc(100%-20px)] sm:w-[calc(100%-30px)] lg:w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0"
                     {...register("studio", {
                       required: true,
                       minLength: {
@@ -118,7 +118,7 @@ const SignUp = () => {
                 <label
                   htmlFor="email"
                   id="email"
-                  className="font-syne text-[16px] font-medium p-3"
+                  className="font-syne text-[10px] sm:text-[16px] font-medium p-3"
                 >
                   Email
                 </label>
@@ -129,11 +129,11 @@ const SignUp = () => {
                     type="email"
                     id="email"
                     placeholder="sanukumar2026@gmail.com"
-                    className="font-syne relative left-5 text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0"
+                    className="font-syne relative left-5 text-[12px] sm:text-[16px] font-medium w-[calc(100%-20px)] sm:w-[calc(100%-30px)] lg:w-[calc(100%-40px)]  outline-none focus:outline-none focus:ring-0"
                     {...register("email", {
                       required: true,
                       pattern: {
-                        value: /^[a-zA-Z0-9._-]+@[a-zA-Z0,9.-]+\.[a-zA-Z]{2,}$/,
+                        value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                         message: "Please enter valid email address",
                       },
                     })}
@@ -151,7 +151,7 @@ const SignUp = () => {
                 <label
                   htmlFor="firstName"
                   id="firstName"
-                  className="font-syne text-[16px] font-medium p-3"
+                  className="font-syne text-[10px] sm:text-[16px] font-medium p-3"
                 >
                   First Name
                 </label>
@@ -162,7 +162,7 @@ const SignUp = () => {
                     type="text"
                     id="firstName"
                     placeholder="Shanu"
-                    className="font-syne relative left-5 text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0"
+                    className="font-syne relative left-5 text-[12px] sm:text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0"
                     {...register("firstName", {
                       required: true,
                       pattern: /^[a-zA-Z]+$/,
@@ -180,7 +180,7 @@ const SignUp = () => {
                 <label
                   htmlFor="lastName"
                   id="lastName"
-                  className="font-syne text-[16px] font-medium p-3"
+                  className="font-syne text-[10px] sm:text-[16px] font-medium p-3"
                 >
                   Last Name
                 </label>
@@ -205,32 +205,11 @@ const SignUp = () => {
                 </div>
               </div>
 
-              {/* <div className="w-full inputBox">
-              <label
-                htmlFor="phoneNumber"
-                id="phoneNumber"
-                className="font-syne text-[16px] font-medium p-3"
-              >
-                Phone Number
-              </label>
-
-              <div className="inputAnsBox">
-                <input
-                  required="true"
-                  type="number"
-                  id="phoneNumber"
-                  placeholder="7788997788"
-                  className="font-syne relative left-5 text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0"
-                  max = "10"
-                />
-              </div>
-            </div> */}
-
               <div className="w-full inputBox">
                 <label
                   htmlFor="password"
                   id="password"
-                  className="font-syne text-[16px] font-medium p-3"
+                  className="font-syne text-[10px] sm:text-[16px] font-medium p-3"
                 >
                   Password
                 </label>
@@ -242,7 +221,7 @@ const SignUp = () => {
                       type={showPsd ? "text" : "password"}
                       id="password"
                       placeholder="Asdsfsd112"
-                      className="font-syne relative left-5 text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0 "
+                      className="font-syne relative left-5 text-[12px] sm:text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0 "
                       {...register("password", {
                         required: true,
                         minLength: 8,
@@ -266,7 +245,8 @@ const SignUp = () => {
                   </div>
                   {errors.password && (
                     <span className="relative left-5 top-1 text-xs text-red-500">
-                      {errors.password.message || "Password should be at least 8 characters"}
+                      {errors.password.message ||
+                        "Password should be at least 8 characters"}
                     </span>
                   )}
                   {/* Password Hide Icon */}
@@ -277,9 +257,9 @@ const SignUp = () => {
                 <label
                   htmlFor="confirmPsd"
                   id="confirmPsd"
-                  className="font-syne text-[16px] font-medium p-3"
+                  className="font-syne sm:text-[16px] font-medium p-3 text-[10px]"
                 >
-                  Confirm Password
+                  {"Confirm Password"}
                 </label>
                 <div className="inputAnsBox flex flex-col">
                   <div className="w-full flex items-center">
@@ -288,7 +268,7 @@ const SignUp = () => {
                       type={showConPsd ? "text" : "password"}
                       id="confirmPsd"
                       placeholder="Asdsfsd112"
-                      className="font-syne relative left-5 text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0"
+                      className="font-syne relative left-5 text-[12px] sm:text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0"
                       {...register("confirmPsd", {
                         required: true,
                         validate: (match) => {

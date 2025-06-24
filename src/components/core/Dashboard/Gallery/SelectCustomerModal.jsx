@@ -29,28 +29,28 @@ const SelectCustomerModal = ({setSelectCustomerModal, galleryId}) => {
 
   return (
     <section className="fixed h-screen w-screen inset-0 backdrop-blur-[5px] flex items-center justify-center">
-      <div className="w-[510px] border-1 border-[rgba(0,0,0,0.2)] rounded-xl pr-5 pl-5 pb-6 pt-5 bg-[linear-gradient(297deg,rgba(255,0,102,0.6)_0.12%,rgba(255,51,132,0.6)_99.88%)] font-normal flex items-center justify-center">
+      <div className="w-[350px] sm:w-[510px] border-1 border-[rgba(0,0,0,0.2)] rounded-xl px-2 pt-2 pb-4 sm:pr-5 sm:pl-10 sm:pb-12 sm:pt-5 bg-[linear-gradient(297deg,rgba(255,0,102,0.6)_0.12%,rgba(255,51,132,0.6)_99.88%)] font-normal flex items-center justify-center">
         <form
           className="flex flex-col font-syne w-full"
           onSubmit={handleSubmit(selectClient)}
         >
           <div className="flex justify-between w-full mb-5">
-            <p className="text-[28px] text-lightBlack self-center">
+            <p className="text-[14px] sm:-text-[28px] text-lightBlack self-center">
               Choose Client
             </p>
             <div className="flex gap-2">
               {/* Choose Client Add button to the folder */}
               <button className="self-end rounded-full border-2 border-lightBlack">
-                <IoMdAdd className="h-[30px] w-[30px]" />
+                <IoMdAdd className="h-[15px] w-[15px] sm:h-[30px] sm:w-[30px]" />
               </button>
 
               <button
                 className="self-end rounded-full border-2 border-lightBlack"
                 onClick={() => {
-                    setSelectCustomerModal(false)
+                  setSelectCustomerModal(false);
                 }}
               >
-                <IoCloseSharp className="h-[30px] w-[30px]" />
+                <IoCloseSharp className="h-[15px] w-[15px] sm:h-[30px] sm:w-[30px]" />
               </button>
             </div>
           </div>
@@ -58,20 +58,17 @@ const SelectCustomerModal = ({setSelectCustomerModal, galleryId}) => {
           <label id="selectClient">
             <select
               id="selectClient"
-              className="flex flex-col w-[404px] text-2xl pl-1 bg-[rgba(255,255,255,0.1)] border-1 border-[rgba(255,255,255,0.1)] rounded-[10px] py-2 "
-              {...register("client", 
-                {required: true},
-                
-              )}
+              className="bg-[rgba(255,255,255,0.1)] text-lg sm:text-2xl pl-2 border-1 border-[rgba(255,255,255,0.1)] rounded-[10px] w-[320px] sm:w-[404px] py-2 "
+              {...register("client", { required: true })}
             >
-              <option className="text-xl pb-2" disabled>
+              <option className="text-base sm:text-xl sm:pb-2" disabled>
                 Select Customers
               </option>
-              {
-                clients?.map((client)=>(
-                    <option className = "text-xl" key = {client._id} value = {client._id}>{client?.clientName}</option>
-                ))
-              }
+              {clients?.map((client) => (
+                <option className="text-base sm:text-xl" key={client._id} value={client._id}>
+                  {client?.clientName}
+                </option>
+              ))}
             </select>
           </label>
         </form>

@@ -38,7 +38,7 @@ const PhotographerLogin = () => {
   return (
     <section
       className="relative bg-[linear-gradient(120deg,_#c8a0ffb3_10%,_#6496ff80_100%)]
- w-screen min-h-[calc(100vh-131px)]"
+ w-screen min-h-[calc(100vh-50px)] sm:min-h-[calc(100vh-131px)"
     >
       {/* Photographer Logo */}
       <div className="flex w-full justify-center items-center absolute top-[120px]">
@@ -50,7 +50,7 @@ const PhotographerLogin = () => {
       {/* Form  */}
       <div className="w-full relative top-[220px]">
         <form
-          className="flex flex-col gap-5 mx-auto w-[782px]"
+          className="flex flex-col gap-5 mx-auto w-[340px] sm:w-[600px] lg:w-[682px]"
           onSubmit={handleSubmit(onSubmit)}
         >
           {/* Back Button */}
@@ -62,7 +62,7 @@ const PhotographerLogin = () => {
             <label
               htmlFor="email"
               id="email"
-              className="font-syne text-[16px] font-medium p-3"
+              className="font-syne text-[10px] sm:text-[16px] font-medium p-3"
             >
               Email
             </label>
@@ -75,7 +75,7 @@ const PhotographerLogin = () => {
                 type="email"
                 id="email"
                 placeholder="sanukumar2026@gmail.com"
-                className="font-syne relative left-5 text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0"
+                className="font-syne relative left-5 text-[12px] sm:text-[16px] font-medium w-[calc(100%-20px)] sm:w-[calc(100%-30px)] lg:w-[calc(100%-40px)]  outline-none focus:outline-none focus:ring-0"
                 {...register("email", { required: true })}
               />
               {errors.email && (
@@ -90,36 +90,36 @@ const PhotographerLogin = () => {
             <label
               htmlFor="password"
               id="password"
-              className="font-syne text-[16px] font-medium p-3"
+              className="font-syne text-[10px] sm:text-[16px] font-medium p-3"
             >
               Password
             </label>
             <div className="inputAnsBox flex flex-col">
-              <div className="flex items-center w-full">
-              <input
-                type={showPsd ? "text" : "password"}
-                id="password"
-                placeholder="Asdsfsd112"
-                className="font-syne relative left-5 text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0"
-                {...register("password", {
-                  required: true,
-                  pattern: {
-                    value: /^[a-zA-Z0-9$._,]{8,}$/,
-                    message: "Password is smaller",
-                  },
-                })}
-              />
-              {showPsd ? (
-                <BsEyeFill
-                  className="relative left-[20px] w-[24px] h-[24px] cursor-pointer"
-                  onClick={() => setShowPsd(!showPsd)}
+              <div className="flex items-center ">
+                <input
+                  type={showPsd ? "text" : "password"}
+                  id="password"
+                  placeholder="Asdsfsd112"
+                  className="font-syne relative left-5 text-[12px] sm:text-[16px] font-medium w-[calc(100%-40px)] outline-none focus:outline-none focus:ring-0 "
+                  {...register("password", {
+                    required: true,
+                    pattern: {
+                      value: /^[a-zA-Z0-9$._,]{8,}$/,
+                      message: "Password is smaller",
+                    },
+                  })}
                 />
-              ) : (
-                <BsEyeSlashFill
-                  className="relative left-[20px] w-[24px] h-[24px] cursor-pointer"
-                  onClick={() => setShowPsd(!showPsd)}
-                />
-              )}
+                {showPsd ? (
+                  <BsEyeFill
+                    className="relative left-[20px] w-[24px] h-[24px] cursor-pointer"
+                    onClick={() => setShowPsd(!showPsd)}
+                  />
+                ) : (
+                  <BsEyeSlashFill
+                    className="relative left-[20px] w-[24px] h-[24px] cursor-pointer"
+                    onClick={() => setShowPsd(!showPsd)}
+                  />
+                )}
               </div>
               {errors.password && (
                 <span className="relative left-5 top-1 text-xs text-red-500">

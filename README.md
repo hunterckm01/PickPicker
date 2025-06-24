@@ -2,11 +2,7 @@ Pick Picker is a full-stack photo gallery sharing platform for professional phot
 docs.github.com
 medium.com
 .
-Key Features
-
-In line with recommended README practices
-github.com
-, Pick Picker’s key features include:
+Pick Picker’s key features include:
 
     User Registration: Photographers register with a unique phone number (one per user account).
 
@@ -20,19 +16,11 @@ github.com
 
 Tech Stack
 
-As advised by common README conventions
-dev.to
-, we list the main technologies used:
-
     Frontend: React, HTML/CSS, Tailwind CSS, React Router DOM, Redux, Axios.
 
     Backend: Node.js, Express.js, and the Archiver library for on-the-fly ZIP file generation.
 
 Deployment
-
-The README also specifies deployment details as recommended
-dev.to
-:
 
     Backend (API): Deployed on Render.
 
