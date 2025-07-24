@@ -331,7 +331,7 @@ const SignUp = () => {
                 >
                   Send Otp
                 </div>
-
+                  <span className="text-red-700 text-xs">Please Wait For Otp a quite, since it's deployed on render</span>
                 <button className="moveButton cursor-pointer">
                   <FaArrowRight className="text-2xl" />
                 </button>
