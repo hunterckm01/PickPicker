@@ -47,7 +47,7 @@ const MyProfile = () => {
         <div className="w-full inputBox">
           <label
             htmlFor="email"
-            className="w-full font-syne text-[12px] sm:text-[16px] font-medium p-3"
+            className="w-[30%] font-syne text-[12px] sm:text-[16px] font-medium p-3"
           >
             Email
           </label>
@@ -65,7 +65,7 @@ const MyProfile = () => {
         <div className="w-full inputBox">
           <label
             htmlFor="firstName"
-            className="w-full font-syne text-[12px] sm:text-[16px] font-medium p-3"
+            className="w-[50%] sm:w-[30%] font-syne text-[12px] sm:text-[16px] font-medium p-3"
           >
             First Name
           </label>
@@ -83,7 +83,7 @@ const MyProfile = () => {
         <div className="w-full inputBox">
           <label
             htmlFor="lastName"
-            className="w-full font-syne text-[12px] sm:text-[16px] font-medium p-3"
+            className="w-[50%] sm:w-[30%] font-syne text-[12px] sm:text-[16px] font-medium p-3"
           >
             Last Name
           </label>
@@ -101,7 +101,7 @@ const MyProfile = () => {
         <div className="w-full inputBox">
           <label
             htmlFor="studioName"
-            className="w-full font-syne text-[12px] sm:text-[16px] font-medium p-3"
+            className="w-[50%] sm:w-[30%] font-syne text-[12px] sm:text-[16px] font-medium p-3"
           >
             Studio Name
           </label>
