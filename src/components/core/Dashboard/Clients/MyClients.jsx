@@ -65,7 +65,7 @@ const MyClients = () => {
         {clients?.map((client) => (
           <li
             key={client._id}
-            className="w-full sm:mx-[170px] border bg-[rgba(255,255,255,0.1)] border-[rgba(0,0,0,0.2)] rounded-[10px]  flex font-syne text-sm sm:text-3xl items-center justify-between px-[8px] sm:px-[30px] py-[6px] sm:py-[18px]"
+            className="w-full border bg-[rgba(255,255,255,0.1)] border-[rgba(0,0,0,0.2)] rounded-[10px]  flex font-syne text-sm sm:text-3xl items-center justify-between px-[8px] sm:px-[30px] py-[6px] sm:py-[18px]"
           >
             <p className="w-[80px] sm:w-[250px]">{client.clientName}</p>
             <p className="w-[80px] sm:w-[150px]">{client.clientNumber}</p>
