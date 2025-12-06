@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
     required: true,
-    trim: true, // IT REMOVES THE WHITESPACE
+    trim: true, 
   },
   lastName: {
     type: String,

@@ -28,5 +28,4 @@ export const deleteFileFromCloudinary = async(fileUrl, folder) => {
     console.log("File id is", fileId)
 
     await cloudinary.uploader.destroy(fileId, options)
-
 }
