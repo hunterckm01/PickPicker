@@ -12,7 +12,8 @@ import mailSender from '../utils/mailSender.js'
 // Send Otp Method  :- Mail Sender Implementation is Pending
 export async function sendOtp(req, res){
     try{
-        console.log("Reeached herer")
+        console.log("Otp route hit");
+        // console.log("Reeached herer")
         const {email} = req.body ;
 
         const checkUserPresent = await User.findOne({email})

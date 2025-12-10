@@ -81,11 +81,11 @@ export function sendOtp(email){
         const toastId = toast.loading("Loading")
         dispatch(setLoading(true))
         try{
-            console.log("Email is", email)
-            const response = await apiConnector('POST',SENDOTP_API, {email
+            // console.log("Email is", email)
+            console.log(SENDOTP_API);
+            const response = await apiConnector('POST', SENDOTP_API, {email
                 //checkUserPresent: true
             })
-
             // console.log("Response is", response)
 
             if(!response.data.success){
