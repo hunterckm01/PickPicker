@@ -20,6 +20,10 @@ Tech Stack
 Deployment
 
     Backend (API): Deployed on Render.
+        https://pickpicker.onrender.com
 
     Frontend (Web): Deployed on Vercel.
+        https://pick-picker.vercel.app/
+
+
 
