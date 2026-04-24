@@ -23,7 +23,7 @@ const handleImageChange = async(e) => {
     if(image){
         setDisplayImage(image)
         previewDisplayPicture(image)
-        console.log(image)
+        // console.log(image)
     }   
 }
 

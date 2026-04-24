@@ -14,7 +14,7 @@ const PreviewImages = () => {
     useEffect(()=>{
         const getImages = async() => {
             const response = await previewGallery(galleryId, code)
-            console.log("Response is", response)
+            // console.log("Response is", response)
             setImages(response.images)
         }
         getImages()

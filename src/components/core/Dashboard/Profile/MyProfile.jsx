@@ -18,13 +18,13 @@ const MyProfile = () => {
   useEffect(()=>{
     photographerAllDetails()  
     const details = JSON.parse(localStorage.getItem("photographer"))
-    console.log("Photographer details is", details)
+    // console.log("Photographer details is", details)
     setPhotographerDetails(details)
   },[])
   
-  useEffect(()=>{
-    console.log("Clients are", clients)
-  },[clients])
+  // useEffect(()=>{
+  //   // console.log("Clients are", clients)
+  // },[clients])
 
   return (
     <div className="w-screen min-h-[calc(100vh-50px)] sm:min-h-[calc(100vh-131px)] bg-[linear-gradient(103deg,_#efdaffc0_2.13%,_#b458ff8f_104.3%)] flex flex-col ">

@@ -22,7 +22,7 @@ const MyGallery = () => {
   },[])
 
   useEffect(()=>{
-    console.log("Folders are", folders)
+    // console.log("Folders are", folders)
   },[folders])
 
   const selectGallery = (gallery, galleryId) => {

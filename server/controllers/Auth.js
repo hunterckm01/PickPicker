@@ -12,7 +12,7 @@ import mailSender from '../utils/mailSender.js'
 // Send Otp Method  :- Mail Sender Implementation is Pending
 export async function sendOtp(req, res){
     try{
-        console.log("Otp route hit");
+        // console.log("Otp route hit");
         // console.log("Reeached herer")
         const {email} = req.body ;
 
@@ -34,7 +34,7 @@ export async function sendOtp(req, res){
             specialChars: false
         })
 
-        console.log("Otp Generated", otpCreated);
+        // console.log("Otp Generated", otpCreated);
 
         var result = await Otp.findOne({ otp: otpCreated });
 
@@ -143,7 +143,7 @@ export async function signUp(req, res){
             contactNumber: null
         })
 
-        console.log("Reached after Profile Creation");
+        // console.log("Reached after Profile Creation");
         const user = await User.create({
             studioName,
             firstName,

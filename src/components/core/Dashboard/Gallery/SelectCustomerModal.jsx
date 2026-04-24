@@ -15,7 +15,7 @@ const SelectCustomerModal = ({setSelectCustomerModal, galleryId}) => {
     const selectClient = async(data) => {
         const formData = new FormData()
 
-        console.log("Form data is", data)
+        // console.log("Form data is", data)
         formData.append("clientId", data.client)
         formData.append("galleryId", galleryId)
 

@@ -21,7 +21,7 @@ const CustomerModal = ({ setCustomerModal, token, editClient }) => {
   // const {token} = useSelector((state)=>state.auth)
   const dispatch = useDispatch()
   useEffect(()=>{
-    console.log("Edit Client is", editClient)
+    // console.log("Edit Client is", editClient)
     if(editClient){
       setValue('name', client.clientName)
       setValue('phoneNumber', client.clientNumber)
@@ -30,7 +30,7 @@ const CustomerModal = ({ setCustomerModal, token, editClient }) => {
 
   const isFormUpdated = () => {
     const currentValues = getValues() ;
-    console.log("Current Values are", currentValues)
+    // console.log("Current Values are", currentValues)
     if(currentValues.name !== client.clientName ||
       currentValues.phoneNumber !== client.clientNumber
     ){
@@ -42,7 +42,7 @@ const CustomerModal = ({ setCustomerModal, token, editClient }) => {
   const customerSubmit = async (data) => {
     // If Edit Client is true Update the form
     if(editClient){
-      console.log("is form updated",isFormUpdated())
+      // console.log("is form updated",isFormUpdated())
       if(isFormUpdated()){
         const currentValues = getValues()
         const formData = new FormData()
@@ -54,7 +54,7 @@ const CustomerModal = ({ setCustomerModal, token, editClient }) => {
         if (currentValues.phoneNumber !== client.clientNumber) {
           formData.append("clientNumber", data.phoneNumber);
         }
-        console.log("Form data is", formData)
+        // console.log("Form data is", formData)
         await updateClient(formData, token)
       }
       else{

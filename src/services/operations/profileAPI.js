@@ -16,7 +16,7 @@ export function updateProfile(token, formData) {
   return async (dispatch) => {
     const toastId = toast.loading("Updating")
     dispatch(setLoading(true));
-    console.log("Form Data is", formData)
+    // console.log("Form Data is", formData)
     try {
       const response = await apiConnector(
         "POST",
@@ -46,8 +46,8 @@ export function updateProfile(token, formData) {
 
       toast.success("Profile Updated Successfully");
     } catch (err) {
-        console.log("Could not update successfully")
-      console.log("COULD NOT UPDATE THE PROFILE", err);
+      //   console.log("Could not update successfully")
+      // console.log("COULD NOT UPDATE THE PROFILE", err);
     //   toast.error(err.response.data.message);
     }
     dispatch(setLoading(false));
@@ -59,7 +59,7 @@ export function updateAdditionalProfile(token, formData) {
   return async (dispatch) => {
     const toastId = toast.loading("Updating");
     dispatch(setLoading(true));
-    console.log("Form Data is", formData);
+    // console.log("Form Data is", formData);
     try {
       const response = await apiConnector(
         "POST",
@@ -74,7 +74,7 @@ export function updateAdditionalProfile(token, formData) {
         throw new Error(response.data.message);
       }
 
-      console.log("Error is here")
+      // console.log("Error is here")
       const userImage =
         response?.data?.photographer?.image ??
         `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.photographer.firstName} ${response.data.photographer.lastName}`;
@@ -91,7 +91,7 @@ export function updateAdditionalProfile(token, formData) {
       toast.success("Profile Updated Successfully");
     } catch (err) {
       toast.error("Could not update successfully");
-      console.log("COULD NOT UPDATE THE  ADDITIONAL PROFILE", err);
+      // console.log("COULD NOT UPDATE THE  ADDITIONAL PROFILE", err);
       //   toast.error(err.response.data.message);
     }
     dispatch(setLoading(false));
@@ -112,11 +112,11 @@ export function deleteAccount(token, navigate) {
         throw new Error(response.data.message);
       }
 
-      console.log("Reached or not")
+      // console.log("Reached or not")
       toast.success("Account Deleted");
       dispatch(logout(navigate));
     } catch (err) {
-      console.log("DELETE ACCOUNT API ERROR", err);
+      // console.log("DELETE ACCOUNT API ERROR", err);
       
       // toast.error(err.response.data.message);
     }
@@ -147,7 +147,7 @@ export function updateProfilePicture(token, formData) {
   return async (dispatch) => {
     const toastId = toast.loading("Updating");
     try {
-      console.log("Display picture is", formData);
+      // console.log("Display picture is", formData);
       const response = await apiConnector(
         "PATCH",
         UPDATE_PROFILE_PICTURE_API,
@@ -163,14 +163,14 @@ export function updateProfilePicture(token, formData) {
       }
 
       toast.success("Profile Picture updated successfully");
-      console.log("Response got is", response)
+      // console.log("Response got is", response)
       dispatch(setPhotographer(response.data.updatedPhotographer));
       localStorage.setItem(
         "photographer",
         JSON.stringify(response.data.updatedPhotographer)
       );
     } catch (err) {
-      console.log("UPDATE PROFILE PICTURE API ERROR", err.response);
+      // console.log("UPDATE PROFILE PICTURE API ERROR", err.response);
       toast.error(err.response.data.message);
     }
     toast.dismiss(toastId);

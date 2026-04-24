@@ -14,7 +14,7 @@ const UpdateBasicInformation = () => {
   const dispatch = useDispatch()
 
   const onSubmit = async(data) => {
-    console.log("Form Data is", data)
+    // console.log("Form Data is", data)
     const formData = new FormData()
 
     formData.append("firstName", data.firstName)

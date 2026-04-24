@@ -9,7 +9,7 @@ import { TiUserDeleteOutline } from "react-icons/ti";
 import { setClient, setEditClient } from "../../../../slices/clientSlice.js";
 
 const MyClients = () => {
-  console.log("Reached my client");
+  // console.log("Reached my client");
   const { token } = useSelector((state) => state.auth);
   const { clients, editClient } = useSelector((state) => state.clients);
   const dispatch = useDispatch();
@@ -23,19 +23,19 @@ const MyClients = () => {
   }, []);
 
   useEffect(()=>{
-    console.log("Clients length is", clients.length)
+    // console.log("Clients length is", clients.length)
   },[clients])
 
   const editClientDetails = (clientProperties) => {
-    console.log("Edit Client Details is true")
+    // console.log("Edit Client Details is true")
     dispatch(setEditClient(true))
-    console.log("Client properties are", clientProperties)
+    // console.log("Client properties are", clientProperties)
     dispatch(setClient(clientProperties))
     setCustomerModal(true)
   }
 
   const deleteCustomer = async(clientId) => {
-    console.log("Client Id is", clientId)
+    //console.log("Client Id is", clientId)
     await deleteClient(clientId, token)
     dispatch(getAllClient(token))
   }

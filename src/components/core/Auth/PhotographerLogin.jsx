@@ -22,14 +22,14 @@ const PhotographerLogin = () => {
   const [psdType, setPsdType] = useState(false);
 
   const onSubmit = async (data) => {
-    console.log("Login Frontend");
+    // console.log("Login Frontend");
+    dispatch(setLoading(true));
     const formData = new FormData();
 
     formData.append("email", data.email);
     formData.append("password", data.password);
 
-    dispatch(setLoading(true));
-    dispatch(login(formData, navigate));
+    await dispatch(login(formData, navigate));
 
     // dispatch(setPhotographer(photographerData))
     dispatch(setLoading(false));
@@ -104,8 +104,8 @@ const PhotographerLogin = () => {
                   {...register("password", {
                     required: true,
                     pattern: {
-                      value: /^[a-zA-Z0-9$._,]{8,}$/,
-                      message: "Password is smaller",
+                      value: /^.{8,}$/,
+                      message: "Password must be at least 8 characters",
                     },
                   })}
                 />

@@ -10,9 +10,9 @@ const DeleteAccount = () => {
     const dispatch = useDispatch()
 
     const deleteAccountHandler = async() => {
-        console.log("Delete Handler Called")
+        // console.log("Delete Handler Called")
         dispatch(deleteAccount(token, navigate))
-        console.log("Account Deleted Successfully")
+        // console.log("Account Deleted Successfully")
     }
   return (
     <div className="py-[50px] w-[330px] sm:w-[600px] lg:w-[900px] mx-auto flex flex-col gap-8">

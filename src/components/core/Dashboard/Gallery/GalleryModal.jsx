@@ -46,7 +46,10 @@ const GalleryModal = ({setGalleryModal, token}) => {
                 className="self-end rounded-full border-2 border-lightBlack"
                 onClick={() => {
                   dispatch(setEditClient(false));
-                  setCustomerModal(false);
+                  3
+                  
+                  
+                  (false);
                 }}
               >
                 <IoCloseSharp className="h-[15px] w-[15px] sm:h-[30px] sm:w-[30px]" />

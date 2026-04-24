@@ -14,7 +14,7 @@ export function login(data, navigate){
         dispatch(setLoading(true))
         try{
             //SEND THE AXIOS REQUREST
-            console.log("Data got is", data)
+            // console.log("Data got is", data)
             const response = await apiConnector('POST', LOGIN_API, data)
             //CHECK FOR THE ERROR IF GOT
             if(!response){
@@ -39,7 +39,7 @@ export function login(data, navigate){
         }
         catch(err){
             //CATCH THE ERROR IF ANY
-            console.log("LOGIN API ERROR...", err)
+            // console.log("LOGIN API ERROR...", err)
             toast.error(err.response.data.message)
         }
         //MARK SET LOADING FALSE
@@ -55,8 +55,8 @@ export function signUp(data, navigate){
         const toastId = toast.loading("Loading")
         dispatch(setLoading(true))
         try{
-            console.log("Signup data is", data)
-            console.log("Reached signup api");
+            // console.log("Signup data is", data)
+            // console.log("Reached signup api");
             const response = await apiConnector("POST", SIGNUP_API, data);
 
             if(!response.data.success){
@@ -67,7 +67,7 @@ export function signUp(data, navigate){
             navigate("/login")
         }
         catch(err){
-            console.log("Sign Up Failed", err)
+            // console.log("Sign Up Failed", err)
             toast.error(err.response.data.message)
             // navigate("/signUp")
         }
@@ -81,22 +81,22 @@ export function sendOtp(email){
         const toastId = toast.loading("Loading")
         dispatch(setLoading(true))
         try{
-            // console.log("Email is", email)
-            console.log(SENDOTP_API);
+            // // console.log("Email is", email)
+            // console.log(SENDOTP_API);
             const response = await apiConnector('POST', SENDOTP_API, {email
                 //checkUserPresent: true
             })
             // console.log("Response is", response)
 
             if(!response.data.success){
-                console.log("Response success is", response.data.success)
+                // console.log("Response success is", response.data.success)
                 throw new Error(response.data.message)
             }
 
             toast.success("OTP Sent Successfully");
         }
         catch(err){ 
-            console.log("OTP API ERROR", err.response)
+            // console.log("OTP API ERROR", err.response)
             toast.error(err.response.data.message)
         }
         dispatch(setLoading(false))
@@ -120,7 +120,7 @@ export function changePassword(oldPassword, newPassword){
             navigate("/dashboard/my-profile")
         }
         catch(err){
-            console.log("CHANGE PASSWORD API ERROR", err.response.data.message)
+            // console.log("CHANGE PASSWORD API ERROR", err.response.data.message)
             toast.error(err.response.data.message)
         }
         toast.dismiss(toastId)

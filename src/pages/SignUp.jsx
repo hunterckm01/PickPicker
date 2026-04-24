@@ -26,7 +26,7 @@ const SignUp = () => {
 
   function emailHandler(e) {
     setEmail(e.target.value);
-    console.log("email now is", e.target.value);
+    // console.log("email now is", e.target.value);
   }
 
   const validateEmail = () => {
@@ -41,7 +41,7 @@ const SignUp = () => {
   }
 
   const onSubmit = async (data) => {
-    console.log("On submit handler is called", data);
+    // console.log("On submit handler is called", data);
     const formData = new FormData();
 
     formData.append("studioName", data.studio);
@@ -51,7 +51,7 @@ const SignUp = () => {
     formData.append("password", data.password);
     formData.append("confirmPsd", data.confirmPsd);
     formData.append("otp", data.Otp);
-    console.log("SignUp Form Data after appending", data);
+    // console.log("SignUp Form Data after appending", data);
 
     // setLoading(true)
     dispatch(signUp(formData, navigate));

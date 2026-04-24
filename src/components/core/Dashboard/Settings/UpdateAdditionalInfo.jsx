@@ -23,9 +23,9 @@ const UpdateAdditionalInfo = () => {
         dispatch(updateAdditionalProfile(token, formData))
     }
 
-    useEffect(()=>{
-        console.log("Photographer details is", photographer)
-    },[])
+    // useEffect(()=>{
+    //     console.log("Photographer details is", photographer)
+    // },[])
   return (
     <div className="pt-[50px] w-[330px] sm:w-[600px] lg:w-[900px] mx-auto flex flex-col gap-8">
       <div className="flex justify-between">
