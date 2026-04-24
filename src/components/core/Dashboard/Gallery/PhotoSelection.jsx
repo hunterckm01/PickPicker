@@ -17,9 +17,9 @@ const PhotoSelection = () => {
     const [selectCustomerModal, setSelectCustomerModal] = useState(false)
 
     const share = async() => {
-      console.log("Share function is hit")
+      // console.log("Share function is hit")
       const data = await shareCode(galleryId)
-      console.log("Data is", data)
+      // console.log("Data is", data)
       navigator.clipboard.writeText(data.link)
       toast.success("Link copied Successfully")
     }

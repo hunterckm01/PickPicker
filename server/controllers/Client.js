@@ -1,5 +1,6 @@
 import Client from "../models/Client.js";
 import User from "../models/User.js";
+import Gallery from '../models/Gallery.js'
 // import { uploadImageToCloudinary } from '../utils/imageUploader.js';
 import {sendResponse} from "../utils/sendResponse.js";
 import "dotenv/config";
@@ -138,6 +139,8 @@ export async function deleteClient(req, res) {
       { $pull: { clientID: clientId } },
       { new: true }
     );
+
+    await Gallery.updateMany({clientID: clientId}, {$unset: {clientID: ""}});
 
     // await User.findByIdAndDelete({clientDetails: clientId})
     console.log("Successfully Deleted the client from Photographer DB");

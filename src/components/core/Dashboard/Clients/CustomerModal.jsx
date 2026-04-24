@@ -41,6 +41,7 @@ const CustomerModal = ({ setCustomerModal, token, editClient }) => {
 
   const customerSubmit = async (data) => {
     // If Edit Client is true Update the form
+    console.log("Function is called for customer submit");
     if(editClient){
       // console.log("is form updated",isFormUpdated())
       if(isFormUpdated()){
@@ -54,7 +55,7 @@ const CustomerModal = ({ setCustomerModal, token, editClient }) => {
         if (currentValues.phoneNumber !== client.clientNumber) {
           formData.append("clientNumber", data.phoneNumber);
         }
-        // console.log("Form data is", formData)
+        console.log("Form data is", formData)
         await updateClient(formData, token)
       }
       else{
@@ -69,6 +70,7 @@ const CustomerModal = ({ setCustomerModal, token, editClient }) => {
     formData.append("clientName", data.name);
     formData.append("clientNumber", data.phoneNumber);
 
+    console.log("Form data is", formData);
     await createClient(formData, token);
     dispatch(getAllClient(token))
     setCustomerModal(false);
